@@ -1,0 +1,2 @@
+No case directories with expected.json found
+✓ Manifest verified (mustfail-v1/manifest.json)

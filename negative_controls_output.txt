@@ -1,0 +1,30 @@
+# Independent re-run of the negative controls against checkers/independent_checker.py
+# corpus: https://github.com/DSHCorrectover/ccs-conformance-vectors at commit effff90f231d11bb3be93d3d0d0792f36934cc78
+# date: 2026-10-12 (UTC+8); env: uv 0.12.4 ephemeral env with jcs + cryptography
+
+############################################################
+# NC-A: a manifest-covered file was tampered, manifest left untouched
+# expected: exit 1 and the manifest gate fires (MANIFEST VERIFICATION FAILED)
+############################################################
+EXIT_A=1
+MANIFEST VERIFICATION FAILED:
+  ✗ hash mismatch: 01-allow/receipt.json (expected 889855dc9fcebdb6..., got dca9bd367b2e9425...)
+[...]
+MANIFEST VERIFICATION FAILED:
+  ✗ hash mismatch: 01-allow/receipt.json (expected 889855dc9fcebdb6..., got dca9bd367b2e9425...)
+
+############################################################
+# NC-B: the receipt was tampered AND the manifest was re-pinned to match
+# expected: exit 1, the manifest gate passes, a case verdict fails
+############################################################
+EXIT_B=1
+✓ Manifest verified (_ncB/manifest.json)
+
+[...]
+3:✗ FAIL  01-allow
+279:✗ SOME VECTORS FAILED
+[...]
+Checks: 1476/1549 passed
+Cases:  66/66 matched expected outcome
+
+✗ SOME VECTORS FAILED
