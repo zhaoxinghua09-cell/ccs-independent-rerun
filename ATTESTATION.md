@@ -19,12 +19,12 @@
 任何直接或间接损失，作者不承担责任。
 
 ## 4. 发布时间戳
-- 发布时间（UTC）：2026-11-05T06:32:48.463401+00:00
-- 发布时间（本地）：2026-11-05T14:32:48.463420
-- 内容版本：`2026.11.05.v3`
+- 发布时间（UTC）：2026-11-05T06:38:07.924864+00:00
+- 发布时间（本地）：2026-11-05T14:38:07.924888
+- 内容版本：`2026.11.05.v4`
 
 ## 5. 作品指纹（内容哈希）
-- 包指纹 SHA-256：eed606e97402b97512cc521f010c03a18f3520424c4981465dad898d9643c478
+- 包指纹 SHA-256：c55695972548fdcc62c30531a30b8fcf11054b7f76250148a72c0f6bcb0580d9
 - 本指纹由发布包内全部文件的哈希按确定顺序合成，可作为该版本
   「于上述时间由 Xinghua Zhao (Steven Zhao) - LGD / SynomosAI initiative 发布」的完整性标识。篡改任一文件即导致指纹变化。
 - 合成算法：对 `manifest.json` 的 `files[]`（按 `path` 升序）依次累加 `path` + `0x00` + `sha256(path)`，取 SHA-256。
@@ -39,8 +39,8 @@
 
 - 署名：`Xinghua Zhao (Steven Zhao) — LGD / SynomosAI initiative`
 - 规范仓：`https://github.com/zhaoxinghua09-cell/ccs-independent-rerun`
-- 版本 / 批次：`2026.11.05.v3`
-- 包指纹：`eed606e97402b97512cc521f010c03a18f3520424c4981465dad898d9643c478`
+- 版本 / 批次：`2026.11.05.v4`
+- 包指纹：`c55695972548fdcc62c30531a30b8fcf11054b7f76250148a72c0f6bcb0580d9`
 - 逐文件哈希见下方文件清单
 
 **外锚（第三方时间戳，GitHub 服务器侧记录）**
@@ -49,7 +49,8 @@
 |---|---|---|---|
 | v1（6 份转录 + README + rerun_runs.json） | `2db5d6b1b3ef8c0798cd87026d1e743c94e48cc99b7820429e4608bebbc3d00c` | `4da9f2a3b04dff6540da4e43e4e7688d9647a164` | 2026-11-05T04:47:06Z |
 | v2（17 件，含独立裁决器与签名验证器） | `dd2153c27ca07f0e9c7b638c247229e8b205ef7cf4f0f2c118494beb6406a4da` | `4adeb66445fbb8d5d44ade3637c615d802ede7e1` | 2026-11-05T05:05:03Z |
-| v3（本版，18 件，+ `CITATION.md` 可引用摘要） | `eed606e97402b97512cc521f010c03a18f3520424c4981465dad898d9643c478` | `85fa324b868b977bf9388afd1d4ad7cee5544660` | 2026-11-05T06:33:56Z |
+| v3（18 件，+ `CITATION.md` 可引用摘要） | `eed606e97402b97512cc521f010c03a18f3520424c4981465dad898d9643c478` | `85fa324b868b977bf9388afd1d4ad7cee5544660` | 2026-11-05T06:33:56Z |
+| v4（本版，20 件，+ 11/12 两份 UTF-8 镜像） | `c55695972548fdcc62c30531a30b8fcf11054b7f76250148a72c0f6bcb0580d9` | `ebcf7b9c9505e2805221d828e9a553bfc97df16f` | 2026-11-05T06:40:13Z |
 
 v2 外锚直达：
 `https://github.com/zhaoxinghua09-cell/ccs-independent-rerun/commit/4adeb66445fbb8d5d44ade3637c615d802ede7e1`
@@ -64,6 +65,15 @@ v2 外锚直达：
 > v3 外锚已回填：`https://github.com/zhaoxinghua09-cell/ccs-independent-rerun/commit/85fa324b868b977bf9388afd1d4ad7cee5544660`
 > （2026-11-05T06:33:56Z）。该 commit 提交的正是 v3 的 `manifest.json`（18 件逐文件哈希）；
 > `CITATION.md` 与更新后的批次 `README.md` 已先此一步入库。本 `ATTESTATION.md` 仍在之后再提交，故不入 manifest。
+>
+> **v4 的 commit 号同样尚未产生，同样留「待回填」。** 为什么在 v3 之后几十分钟就出 v4：
+> 复核时发现 `11_R5_adm_run.log` 与 `12_R6_sig_run.log` 是 UTF-16LE（PowerShell 重定向默认编码），
+> 外人 `curl` 下来会拿到一串 `\x00`。原文件按「转录不可改写」原则一字未动，另附逐字对应的 UTF-8 镜像。
+> 内容变了（多了两个文件），指纹就必须变，旧锚不能继续对外声称覆盖新内容。
+>
+> v4 外锚已回填：`https://github.com/zhaoxinghua09-cell/ccs-independent-rerun/commit/ebcf7b9c9505e2805221d828e9a553bfc97df16f`
+> （2026-11-05T06:40:13Z）。该 commit 提交的是 v4 的 `manifest.json`（20 件逐文件哈希），
+> 两份镜像与更新后的批次 `README.md` 已先此一步入库。
 
 **加强（未执行）**
 
@@ -87,11 +97,13 @@ v2 外锚直达：
 | runs/2026-11-05/09_mustfail_verdict.md | 8abf022dcc9ed9edda5db6c4caa33529530d9f975292699f9d1c0c7749d6205b |
 | runs/2026-11-05/10_sig_vectors.md | 4732e414a2b42983e37e2711167b6e0ba381d22cc240bdfa14516fa57dbe493d |
 | runs/2026-11-05/11_R5_adm_run.log | fed9fb3ce83f4ce6273819ba5a9ce8cdb693436c13fc2f0ab2f2f7f26ab3ef36 |
+| runs/2026-11-05/11_R5_adm_run.utf8.log | 4221c62eae01134c95a62dfaeaf43842b27563fad548e0411f16df7992657e69 |
 | runs/2026-11-05/12_R6_sig_run.log | b5bf2425d97ddd4f6ee088780aa2c38bc684e299de4755394ce6e064e7f7509c |
+| runs/2026-11-05/12_R6_sig_run.utf8.log | e5276bea628c6352c1e09ced88424f8feddde32ad9ef11cfe0a084d2382ece75 |
 | runs/2026-11-05/13_independent_verdict_and_signature.md | 3dc290ada7fbe856e2af9a2f28be85f1430b19fb6a212a92292d86736c37d2fd |
-| runs/2026-11-05/README.md | 0d7910b3bc24e6c34fb2a6c987ee340b5a0eb35d28dae7f2ee3ed6503b8b20c7 |
+| runs/2026-11-05/README.md | 4633c0f4b69bd84a5dc4c7574232dd016e8a1052591d5610baff88f61d6abcea |
 | runs/2026-11-05/mustfail_verdict.json | bf90e237c571357010d3786d7127f4196e637b62f72858fbd5b7ef836b10617b |
 | runs/2026-11-05/rerun_runs.json | 2a100347d3ccfcb57b1c85bd6738b01d53f3dc904d65993eab6d5598afbf943c |
 | runs/2026-11-05/sig_vectors.json | 74c6d64260211ef0e0d2930763c59825e53c5d4632eb6d4e6bbcf6bddbcd860d |
 
-**文件数：18**
+**文件数：20**
