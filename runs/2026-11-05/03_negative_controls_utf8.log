@@ -1,0 +1,24 @@
+﻿=== R3 RERUN (UTF-8 mode forced) 2026-11-05T12:01:08.5689332+08:00 ===
+======================================================================
+NC-A : tamper a manifest-covered file, manifest untouched
+======================================================================
+  exit = 1
+  first line: MANIFEST VERIFICATION FAILED:
+  => EXPECTED: exit 1 + MANIFEST VERIFICATION FAILED
+  => NC-A WORKS (gate can fail)
+
+======================================================================
+NC-B : tamper receipt AND re-pin manifest so manifest gate passes
+======================================================================
+  signature before: i6cDOARGniKQSc/sScpQw0X8 ...
+  signature after : AAAAAAAAAAAAAAAAAAAAAAAA ...
+  re-pinned digest applied to manifest
+  exit = 1
+  first line: 鉁?Manifest verified (_ncB/manifest.json)
+  last line : 鉁?SOME VECTORS FAILED
+  FAIL lines: 2
+    鉁?FAIL  01-allow
+    鉁?SOME VECTORS FAILED
+  => NC-B WORKS (verdict gate can fail, manifest gate passed)
+NC_EXIT=0
+=== END ===
