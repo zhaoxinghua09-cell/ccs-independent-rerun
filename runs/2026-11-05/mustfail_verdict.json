@@ -1,0 +1,698 @@
+{
+ "tool": "admission_verifier.py",
+ "vectors_dir": "D:\\Workbuddy\\2026-11-05-10-10-55\\stranger_sim2\\ccs-conformance-vectors\\vectors\\mustfail-v1",
+ "decider_reads": [
+  "policy",
+  "tool_call",
+  "workflow",
+  "observed_response",
+  "data_flow",
+  "response_data_labels"
+ ],
+ "decider_never_reads": [
+  "expectation",
+  "expectation_detail",
+  "dimensions_violated",
+  "why_must_fail",
+  "title",
+  "id"
+ ],
+ "summary": {
+  "vectors_total": 15,
+  "must_fail": 14,
+  "must_pass": 1,
+  "verdict_matches": 15,
+  "dim_matches": 15,
+  "minimal_fix_flipped": 14,
+  "controls_ok": 4,
+  "controls_total": 4,
+  "mismatches": 0
+ },
+ "vectors": [
+  {
+   "id": "MF-C01",
+   "expectation": "MUST-PASS",
+   "expected_verdict": "PASS",
+   "verdict": "PASS",
+   "verdict_match": true,
+   "expected_dims": [],
+   "dims": [],
+   "dims_match": true,
+   "rules": [],
+   "fails": [],
+   "static_per_call": null
+  },
+  {
+   "id": "MF-S01",
+   "expectation": "MUST-FAIL",
+   "expected_verdict": "FAIL",
+   "verdict": "FAIL",
+   "verdict_match": true,
+   "expected_dims": [
+    "Structure"
+   ],
+   "dims": [
+    "Structure"
+   ],
+   "dims_match": true,
+   "rules": [
+    "S1-required-field"
+   ],
+   "fails": [
+    {
+     "dim": "Structure",
+     "rule": "S1-required-field",
+     "detail": "missing/empty envelope field: tool_call_id"
+    }
+   ],
+   "static_per_call": null
+  },
+  {
+   "id": "MF-S02",
+   "expectation": "MUST-FAIL",
+   "expected_verdict": "FAIL",
+   "verdict": "FAIL",
+   "verdict_match": true,
+   "expected_dims": [
+    "Schema"
+   ],
+   "dims": [
+    "Schema"
+   ],
+   "dims_match": true,
+   "rules": [
+    "SC1-strict-arg-type"
+   ],
+   "fails": [
+    {
+     "dim": "Schema",
+     "rule": "SC1-strict-arg-type",
+     "detail": "amount must be number, got str"
+    }
+   ],
+   "static_per_call": null
+  },
+  {
+   "id": "MF-S03",
+   "expectation": "MUST-FAIL",
+   "expected_verdict": "FAIL",
+   "verdict": "FAIL",
+   "verdict_match": true,
+   "expected_dims": [
+    "Latency"
+   ],
+   "dims": [
+    "Latency"
+   ],
+   "dims_match": true,
+   "rules": [
+    "L1-no-deadline"
+   ],
+   "fails": [
+    {
+     "dim": "Latency",
+     "rule": "L1-no-deadline",
+     "detail": "unbounded command carries no deadline_ms/timeout_seconds"
+    }
+   ],
+   "static_per_call": null
+  },
+  {
+   "id": "MF-S04",
+   "expectation": "MUST-FAIL",
+   "expected_verdict": "FAIL",
+   "verdict": "FAIL",
+   "verdict_match": true,
+   "expected_dims": [
+    "Cost"
+   ],
+   "dims": [
+    "Cost"
+   ],
+   "dims_match": true,
+   "rules": [
+    "C1-per-call-budget",
+    "C2-per-trace-budget",
+    "C3-token-ceiling"
+   ],
+   "fails": [
+    {
+     "dim": "Cost",
+     "rule": "C1-per-call-budget",
+     "detail": "estimated_cost_usd=18.5 > per-call budget 5.0"
+    },
+    {
+     "dim": "Cost",
+     "rule": "C2-per-trace-budget",
+     "detail": "spent=46.0+est=18.5 > trace budget 50.0"
+    },
+    {
+     "dim": "Cost",
+     "rule": "C3-token-ceiling",
+     "detail": "max_tokens=2000000 > ceiling 200000"
+    }
+   ],
+   "static_per_call": null
+  },
+  {
+   "id": "MF-S05",
+   "expectation": "MUST-FAIL",
+   "expected_verdict": "FAIL",
+   "verdict": "FAIL",
+   "verdict_match": true,
+   "expected_dims": [
+    "Identity"
+   ],
+   "dims": [
+    "Identity"
+   ],
+   "dims_match": true,
+   "rules": [
+    "I1-untrusted-issuer",
+    "I2-untrusted-algorithm",
+    "I3-empty-signature",
+    "I4-unknown-fingerprint"
+   ],
+   "fails": [
+    {
+     "dim": "Identity",
+     "rule": "I1-untrusted-issuer",
+     "detail": "receipt issuer 'ccs-verifier/self-asserted-unknown' not in trusted_issuers"
+    },
+    {
+     "dim": "Identity",
+     "rule": "I2-untrusted-algorithm",
+     "detail": "signing_algorithm 'none' not trusted"
+    },
+    {
+     "dim": "Identity",
+     "rule": "I3-empty-signature",
+     "detail": "receipt carries no signature"
+    },
+    {
+     "dim": "Identity",
+     "rule": "I4-unknown-fingerprint",
+     "detail": "public_key_fingerprint '0000000000000000' is null/zero"
+    }
+   ],
+   "static_per_call": null
+  },
+  {
+   "id": "MF-S06",
+   "expectation": "MUST-FAIL",
+   "expected_verdict": "FAIL",
+   "verdict": "FAIL",
+   "verdict_match": true,
+   "expected_dims": [
+    "Integrity"
+   ],
+   "dims": [
+    "Integrity"
+   ],
+   "dims_match": true,
+   "rules": [
+    "G1-nonce-replay"
+   ],
+   "fails": [
+    {
+     "dim": "Integrity",
+     "rule": "G1-nonce-replay",
+     "detail": "nonce 'reused-nonce-7f3a-2026' already observed in this trace"
+    }
+   ],
+   "static_per_call": null
+  },
+  {
+   "id": "MF-S07",
+   "expectation": "MUST-FAIL",
+   "expected_verdict": "FAIL",
+   "verdict": "FAIL",
+   "verdict_match": true,
+   "expected_dims": [
+    "Security"
+   ],
+   "dims": [
+    "Security"
+   ],
+   "dims_match": true,
+   "rules": [
+    "X3-shell-metachar",
+    "X4-fetch-and-execute"
+   ],
+   "fails": [
+    {
+     "dim": "Security",
+     "rule": "X3-shell-metachar",
+     "detail": "blocked shell metacharacter '|' in command"
+    },
+    {
+     "dim": "Security",
+     "rule": "X4-fetch-and-execute",
+     "detail": "remote content piped into an interpreter"
+    }
+   ],
+   "static_per_call": null
+  },
+  {
+   "id": "MF-S08",
+   "expectation": "MUST-FAIL",
+   "expected_verdict": "FAIL",
+   "verdict": "FAIL",
+   "verdict_match": true,
+   "expected_dims": [
+    "Security"
+   ],
+   "dims": [
+    "Security"
+   ],
+   "dims_match": true,
+   "rules": [
+    "X6-ssrf-target",
+    "X7-egress-not-allowlisted"
+   ],
+   "fails": [
+    {
+     "dim": "Security",
+     "rule": "X6-ssrf-target",
+     "detail": "egress host '169.254.169.254' is a blocked/link-local/metadata address"
+    },
+    {
+     "dim": "Security",
+     "rule": "X7-egress-not-allowlisted",
+     "detail": "egress host '169.254.169.254' not in egress_allowlist_domains"
+    }
+   ],
+   "static_per_call": null
+  },
+  {
+   "id": "MF-S09",
+   "expectation": "MUST-FAIL",
+   "expected_verdict": "FAIL",
+   "verdict": "FAIL",
+   "verdict_match": true,
+   "expected_dims": [
+    "Security"
+   ],
+   "dims": [
+    "Security"
+   ],
+   "dims_match": true,
+   "rules": [
+    "X5-credential-material"
+   ],
+   "fails": [
+    {
+     "dim": "Security",
+     "rule": "X5-credential-material",
+     "detail": "credential-shaped material matches /AKIA[0-9A-Z]{16}/"
+    }
+   ],
+   "static_per_call": null
+  },
+  {
+   "id": "MF-S10",
+   "expectation": "MUST-FAIL",
+   "expected_verdict": "FAIL",
+   "verdict": "FAIL",
+   "verdict_match": true,
+   "expected_dims": [
+    "Security"
+   ],
+   "dims": [
+    "Security"
+   ],
+   "dims_match": true,
+   "rules": [
+    "X1-tool-not-allowlisted",
+    "X2-tool-not-granted"
+   ],
+   "fails": [
+    {
+     "dim": "Security",
+     "rule": "X1-tool-not-allowlisted",
+     "detail": "tool 'admin.emergency_revoke_all_sessions' absent from tool_allowlist"
+    },
+    {
+     "dim": "Security",
+     "rule": "X2-tool-not-granted",
+     "detail": "tool 'admin.emergency_revoke_all_sessions' not granted to role 'customer_support'"
+    }
+   ],
+   "static_per_call": null
+  },
+  {
+   "id": "MF-S11",
+   "expectation": "MUST-FAIL",
+   "expected_verdict": "FAIL",
+   "verdict": "FAIL",
+   "verdict_match": true,
+   "expected_dims": [
+    "Security"
+   ],
+   "dims": [
+    "Security"
+   ],
+   "dims_match": true,
+   "rules": [
+    "X10-refund-over-cap",
+    "X11-untrusted-instruction"
+   ],
+   "fails": [
+    {
+     "dim": "Security",
+     "rule": "X10-refund-over-cap",
+     "detail": "refund 9999 > 1000 with no approval ticket"
+    },
+    {
+     "dim": "Security",
+     "rule": "X11-untrusted-instruction",
+     "detail": "high-impact 'billing.issue_refund' ordered by 'untrusted-external-content'"
+    }
+   ],
+   "static_per_call": null
+  },
+  {
+   "id": "MF-W01",
+   "expectation": "MUST-FAIL",
+   "expected_verdict": "FAIL",
+   "verdict": "FAIL",
+   "verdict_match": true,
+   "expected_dims": [
+    "Integrity",
+    "Security"
+   ],
+   "dims": [
+    "Integrity",
+    "Security"
+   ],
+   "dims_match": true,
+   "rules": [
+    "Y2-sensitive-egress-unregistered",
+    "Y3-label-scope-mismatch"
+   ],
+   "fails": [
+    {
+     "dim": "Security",
+     "rule": "Y2-sensitive-egress-unregistered",
+     "detail": "step 1 scope ['ops-metrics'] does not accept 'restricted-phi'"
+    },
+    {
+     "dim": "Integrity",
+     "rule": "Y3-label-scope-mismatch",
+     "detail": "'restricted-phi' egress to hooks.alerts.example.net but declared scope is ['ops-metrics']"
+    }
+   ],
+   "static_per_call": [
+    {
+     "step": 0,
+     "tool": "fs.read_file",
+     "verdict": "PASS",
+     "dims": [],
+     "rules": []
+    },
+    {
+     "step": 1,
+     "tool": "http.request",
+     "verdict": "PASS",
+     "dims": [],
+     "rules": []
+    }
+   ]
+  },
+  {
+   "id": "MF-W02",
+   "expectation": "MUST-FAIL",
+   "expected_verdict": "FAIL",
+   "verdict": "FAIL",
+   "verdict_match": true,
+   "expected_dims": [
+    "Identity",
+    "Security"
+   ],
+   "dims": [
+    "Identity",
+    "Security"
+   ],
+   "dims_match": true,
+   "rules": [
+    "Y1-redirect-landed-on-blocked",
+    "Y2-sensitive-egress-unregistered",
+    "Y4-identity-credential-egress"
+   ],
+   "fails": [
+    {
+     "dim": "Security",
+     "rule": "Y1-redirect-landed-on-blocked",
+     "detail": "step 0 landed on '169.254.169.254' after redirect"
+    },
+    {
+     "dim": "Security",
+     "rule": "Y1-redirect-landed-on-blocked",
+     "detail": "step 0 redirect target '169.254.169.254' is blocked/link-local"
+    },
+    {
+     "dim": "Security",
+     "rule": "Y2-sensitive-egress-unregistered",
+     "detail": "step 2 scope ['ops-metrics'] does not accept 'cloud-credential'"
+    },
+    {
+     "dim": "Identity",
+     "rule": "Y4-identity-credential-egress",
+     "detail": "step 2 egress carries cloud role credential derived from call-step-2.response.extracted"
+    }
+   ],
+   "static_per_call": [
+    {
+     "step": 0,
+     "tool": "http.fetch",
+     "verdict": "PASS",
+     "dims": [],
+     "rules": []
+    },
+    {
+     "step": 1,
+     "tool": "json.parse",
+     "verdict": "PASS",
+     "dims": [],
+     "rules": []
+    },
+    {
+     "step": 2,
+     "tool": "http.request",
+     "verdict": "PASS",
+     "dims": [],
+     "rules": []
+    }
+   ]
+  },
+  {
+   "id": "MF-W03",
+   "expectation": "MUST-FAIL",
+   "expected_verdict": "FAIL",
+   "verdict": "FAIL",
+   "verdict_match": true,
+   "expected_dims": [
+    "Integrity",
+    "Security"
+   ],
+   "dims": [
+    "Integrity",
+    "Security"
+   ],
+   "dims_match": true,
+   "rules": [
+    "Y2-sensitive-egress-unregistered",
+    "Y4-secret-crossed-boundary",
+    "Y5-untrusted-instruction-chain"
+   ],
+   "fails": [
+    {
+     "dim": "Security",
+     "rule": "Y2-sensitive-egress-unregistered",
+     "detail": "step 2 sends 'contains-credential' to api.internal.example which declares no accepted scope"
+    },
+    {
+     "dim": "Integrity",
+     "rule": "Y4-secret-crossed-boundary",
+     "detail": "step 2 egress carries 'contains-credential' derived from call-step-2.response.transcript"
+    },
+    {
+     "dim": "Security",
+     "rule": "Y5-untrusted-instruction-chain",
+     "detail": "step 2 'http.request' ordered by untrusted content"
+    }
+   ],
+   "static_per_call": [
+    {
+     "step": 0,
+     "tool": "fs.read_file",
+     "verdict": "PASS",
+     "dims": [],
+     "rules": []
+    },
+    {
+     "step": 1,
+     "tool": "session.export_transcript",
+     "verdict": "PASS",
+     "dims": [],
+     "rules": []
+    },
+    {
+     "step": 2,
+     "tool": "http.request",
+     "verdict": "FAIL",
+     "dims": [
+      "Security"
+     ],
+     "rules": [
+      "X11-untrusted-instruction"
+     ]
+    }
+   ]
+  }
+ ],
+ "minimal_fix_controls": [
+  {
+   "id": "MF-S01",
+   "repaired_verdict": "PASS",
+   "flipped": true,
+   "residual_rules": []
+  },
+  {
+   "id": "MF-S02",
+   "repaired_verdict": "PASS",
+   "flipped": true,
+   "residual_rules": []
+  },
+  {
+   "id": "MF-S03",
+   "repaired_verdict": "PASS",
+   "flipped": true,
+   "residual_rules": []
+  },
+  {
+   "id": "MF-S04",
+   "repaired_verdict": "PASS",
+   "flipped": true,
+   "residual_rules": []
+  },
+  {
+   "id": "MF-S05",
+   "repaired_verdict": "PASS",
+   "flipped": true,
+   "residual_rules": []
+  },
+  {
+   "id": "MF-S06",
+   "repaired_verdict": "PASS",
+   "flipped": true,
+   "residual_rules": []
+  },
+  {
+   "id": "MF-S07",
+   "repaired_verdict": "PASS",
+   "flipped": true,
+   "residual_rules": []
+  },
+  {
+   "id": "MF-S08",
+   "repaired_verdict": "PASS",
+   "flipped": true,
+   "residual_rules": []
+  },
+  {
+   "id": "MF-S09",
+   "repaired_verdict": "PASS",
+   "flipped": true,
+   "residual_rules": []
+  },
+  {
+   "id": "MF-S10",
+   "repaired_verdict": "PASS",
+   "flipped": true,
+   "residual_rules": []
+  },
+  {
+   "id": "MF-S11",
+   "repaired_verdict": "PASS",
+   "flipped": true,
+   "residual_rules": []
+  },
+  {
+   "id": "MF-W01",
+   "repaired_verdict": "PASS",
+   "flipped": true,
+   "residual_rules": []
+  },
+  {
+   "id": "MF-W02",
+   "repaired_verdict": "PASS",
+   "flipped": true,
+   "residual_rules": []
+  },
+  {
+   "id": "MF-W03",
+   "repaired_verdict": "PASS",
+   "flipped": true,
+   "residual_rules": []
+  }
+ ],
+ "tightness_controls": [
+  {
+   "name": "control-unmodified",
+   "based_on": "MF-C01",
+   "expected": "PASS",
+   "verdict": "PASS",
+   "ok": true,
+   "rules": []
+  },
+  {
+   "name": "control-path-traversal",
+   "based_on": "MF-C01",
+   "expected": "FAIL",
+   "verdict": "FAIL",
+   "ok": true,
+   "rules": [
+    "X8-path-traversal"
+   ]
+  },
+  {
+   "name": "control-untrusted-issuer",
+   "based_on": "MF-C01",
+   "expected": "FAIL",
+   "verdict": "FAIL",
+   "ok": true,
+   "rules": [
+    "I5-caller-issuer"
+   ]
+  },
+  {
+   "name": "control-tool-not-granted",
+   "based_on": "MF-C01",
+   "expected": "FAIL",
+   "verdict": "FAIL",
+   "ok": true,
+   "rules": [
+    "X1-tool-not-allowlisted",
+    "X2-tool-not-granted"
+   ]
+  }
+ ],
+ "shallow_per_call_check": [
+  {
+   "id": "MF-W01",
+   "steps": 2,
+   "all_steps_pass_shallow": true
+  },
+  {
+   "id": "MF-W02",
+   "steps": 3,
+   "all_steps_pass_shallow": true
+  },
+  {
+   "id": "MF-W03",
+   "steps": 3,
+   "all_steps_pass_shallow": false
+  }
+ ]
+}
