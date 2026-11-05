@@ -1,0 +1,64 @@
+﻿=== FULL SWEEP over 6 vector sets @ HEAD cb88218 2026-11-05T12:35:44.7845162+08:00 ===
+zero credentials; public repo only
+
+---- SET v1.4.0-conformance ----
+         鉁?receipt-1.json: chain:nonce-unique 鈥?duplicate nonce detected across chain: ['replayed-nonce-0001']
+         鉁?receipt-1.json: chain:prev-hash-matches 鈥?prev_receipt_digest in runtime context is not the digest of predecessor receipt-1.json: declared sha256:42e55e34ad042a50ff0ab3d7c... computed anchor sha256:8070c9b90f794f7c62a4bec7e...
+         鉁?receipt-1.json: chain:spec-prev-crosscheck 鈥?chain.json expected_prev_digests[1] sha256:42e55e34ad042a50ff0ab3d7c... disagrees with computed anchor sha256:8070c9b90f794f7c62a4bec7e...
+
+鉁?PASS  12-nonce-negatives\12b-empty-nonce
+         Expected: invalid 鈥?nonce must be non-empty
+         鉁?receipt.json: structure:nonempty:nonce 鈥?field 'nonce' must be non-empty
+
+============================================================
+Checks: 1477/1549 passed
+Cases:  66/66 matched expected outcome
+Receipts verified: 73/73 admitted by manifest
+
+鉁?ALL VECTORS PASSED
+EXIT_v1.4.0-conformance=0
+
+---- SET v1.3.0 ----
+uv.exe : No case directories with expected.json found
+所在位置 行:511 字符: 8
++   $r = & uv run --no-project --with jcs --with cryptography python ch ...
++        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (No case directo...cted.json found:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+鉁?Manifest verified (v1.3.0/manifest.json)
+EXIT_v1.3.0=1
+
+---- SET v1.1.20 ----
+MANIFEST VERIFICATION FAILED:
+  鉁?manifest.json not found
+EXIT_v1.1.20=1
+
+---- SET canonicalization-v1 ----
+MANIFEST VERIFICATION FAILED:
+  鉁?hash mismatch: README.md (expected bc6077dfe8c80836..., got 3fab0c007850f561...)
+  鉁?hash mismatch: negzero/README.md (expected ffce8d7d709d4233..., got d9b5b5316d433bc2...)
+  鉁?hash mismatch: negzero/expected.json (expected 13b9551930693da9..., got d5530dbaac574d27...)
+  鉁?hash mismatch: negzero/input.json (expected 1aa8c6061a7ee348..., got 3a84188f42379532...)
+  鉁?hash mismatch: pluszero/README.md (expected 1ec4b626c42916a5..., got 74a3bcd72ddcdb57...)
+  鉁?hash mismatch: pluszero/expected.json (expected 9a71f0365ce98c1f..., got 04d9d015eb523c43...)
+  鉁?hash mismatch: pluszero/input.json (expected 9dd85d4aa4cbb4a5..., got 4d15b47835e23a64...)
+EXIT_canonicalization-v1=1
+
+---- SET technical-fit-v1 ----
+MANIFEST VERIFICATION FAILED:
+  鉁?manifest.json not found
+EXIT_technical-fit-v1=1
+
+---- SET mustfail-v1 ----
+uv.exe : No case directories with expected.json found
+所在位置 行:511 字符: 8
++   $r = & uv run --no-project --with jcs --with cryptography python ch ...
++        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (No case directo...cted.json found:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+鉁?Manifest verified (mustfail-v1/manifest.json)
+EXIT_mustfail-v1=1
+
+=== END 2026-11-05T12:36:11.7446739+08:00 ===
