@@ -1,0 +1,385 @@
+{
+ "tool": "verify_sig_vectors.py",
+ "vectors_dir": "D:\\Workbuddy\\2026-11-05-10-10-55\\stranger_sim2\\ccs-conformance-vectors\\vectors",
+ "deps": [
+  "jcs",
+  "cryptography"
+ ],
+ "checks": [
+  {
+   "scope": "v1.1.20",
+   "check": "fixture-present",
+   "ok": true,
+   "detail": "reference-signed-001.json"
+  },
+  {
+   "scope": "v1.1.20",
+   "check": "pubkey-length-32",
+   "ok": true,
+   "detail": "32 bytes"
+  },
+  {
+   "scope": "v1.1.20",
+   "check": "fingerprint-16-matches",
+   "ok": true,
+   "detail": "computed 889d3f5bd86f5ff2"
+  },
+  {
+   "scope": "v1.1.20",
+   "check": "pubkey-sha256-full-matches",
+   "ok": true,
+   "detail": "computed 889d3f5bd86f5ff2…"
+  },
+  {
+   "scope": "v1.1.20",
+   "check": "receipt-pubkey-equals-header",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "scope": "v1.1.20",
+   "check": "receipt-fingerprint-equals-header",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "scope": "v1.1.20",
+   "check": "issuer-consistent",
+   "ok": true,
+   "detail": "ccs-verifier/reference"
+  },
+  {
+   "scope": "v1.1.20",
+   "check": "algorithm-ed25519",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "scope": "v1.1.20",
+   "check": "ed25519-signature",
+   "ok": true,
+   "detail": "signature valid"
+  },
+  {
+   "scope": "v1.1.20",
+   "check": "tamper-control-must-fail",
+   "ok": true,
+   "detail": "mutated field rejected"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "manifest-present",
+   "ok": true,
+   "detail": "manifest.json"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "file-hash:in-process-key/action-1-allow.json",
+   "ok": true,
+   "detail": "13ca960f631b8be3"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "file-hash:in-process-key/action-2-block.json",
+   "ok": true,
+   "detail": "1410e30b163ca746"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "file-hash:in-process-key/behavior-1-allow.json",
+   "ok": true,
+   "detail": "a6c2133fafeaa43e"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "file-hash:in-process-key/behavior-2-block.json",
+   "ok": true,
+   "detail": "76b7b1043196a40a"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "file-hash:in-process-key/metadata.json",
+   "ok": true,
+   "detail": "d9834ae063c47dfd"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "file-hash:sidecar-key/action-1-allow.json",
+   "ok": true,
+   "detail": "947220246a00d2e1"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "file-hash:sidecar-key/action-2-block.json",
+   "ok": true,
+   "detail": "481fb913eb3bc36c"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "file-hash:sidecar-key/behavior-1-allow.json",
+   "ok": true,
+   "detail": "3b935048ff948f66"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "file-hash:sidecar-key/behavior-2-block.json",
+   "ok": true,
+   "detail": "87b8d59a1d7b29f3"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "file-hash:sidecar-key/metadata.json",
+   "ok": true,
+   "detail": "0efb30badb3e65bc"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "manifest-digest",
+   "ok": true,
+   "detail": "computed 42126c2436720213…"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "in-process-key:algorithm",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "in-process-key:chain-verdict-INTACT",
+   "ok": true,
+   "detail": "INTACT"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "in-process-key:action-1:ed25519",
+   "ok": true,
+   "detail": "signature valid"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "in-process-key:behavior-1:ed25519",
+   "ok": true,
+   "detail": "signature valid"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "in-process-key:pair-1:link-digest",
+   "ok": true,
+   "detail": "computed sha256:53c2be53d8817670…"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "in-process-key:pair-1:trace-id",
+   "ok": true,
+   "detail": "paired-vector-001"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "in-process-key:pair-1:tool-call-id",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "in-process-key:pair-1:issuer",
+   "ok": true,
+   "detail": "ccs-verifier/in-process-test"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "in-process-key:pair-1:fingerprint",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "in-process-key:pair-1:l1-field-count-30",
+   "ok": true,
+   "detail": "30 keys"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "in-process-key:action-2:ed25519",
+   "ok": true,
+   "detail": "signature valid"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "in-process-key:behavior-2:ed25519",
+   "ok": true,
+   "detail": "signature valid"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "in-process-key:pair-2:link-digest",
+   "ok": true,
+   "detail": "computed sha256:c1b88d1b3e14139b…"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "in-process-key:pair-2:trace-id",
+   "ok": true,
+   "detail": "paired-vector-001"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "in-process-key:pair-2:tool-call-id",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "in-process-key:pair-2:issuer",
+   "ok": true,
+   "detail": "ccs-verifier/in-process-test"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "in-process-key:pair-2:fingerprint",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "in-process-key:pair-2:l1-field-count-30",
+   "ok": true,
+   "detail": "30 keys"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "in-process-key:tamper-control-must-fail",
+   "ok": true,
+   "detail": "mutated verdict rejected"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "sidecar-key:algorithm",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "sidecar-key:chain-verdict-INTACT",
+   "ok": true,
+   "detail": "INTACT"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "sidecar-key:action-1:ed25519",
+   "ok": true,
+   "detail": "signature valid"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "sidecar-key:behavior-1:ed25519",
+   "ok": true,
+   "detail": "signature valid"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "sidecar-key:pair-1:link-digest",
+   "ok": true,
+   "detail": "computed sha256:9a79fe800698b08c…"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "sidecar-key:pair-1:trace-id",
+   "ok": true,
+   "detail": "paired-vector-001"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "sidecar-key:pair-1:tool-call-id",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "sidecar-key:pair-1:issuer",
+   "ok": true,
+   "detail": "ccs-verifier/sidecar-test"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "sidecar-key:pair-1:fingerprint",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "sidecar-key:pair-1:l1-field-count-30",
+   "ok": true,
+   "detail": "30 keys"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "sidecar-key:action-2:ed25519",
+   "ok": true,
+   "detail": "signature valid"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "sidecar-key:behavior-2:ed25519",
+   "ok": true,
+   "detail": "signature valid"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "sidecar-key:pair-2:link-digest",
+   "ok": true,
+   "detail": "computed sha256:7dc05a589d5eb7fa…"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "sidecar-key:pair-2:trace-id",
+   "ok": true,
+   "detail": "paired-vector-001"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "sidecar-key:pair-2:tool-call-id",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "sidecar-key:pair-2:issuer",
+   "ok": true,
+   "detail": "ccs-verifier/sidecar-test"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "sidecar-key:pair-2:fingerprint",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "sidecar-key:pair-2:l1-field-count-30",
+   "ok": true,
+   "detail": "30 keys"
+  },
+  {
+   "scope": "v1.3.0",
+   "check": "sidecar-key:tamper-control-must-fail",
+   "ok": true,
+   "detail": "mutated verdict rejected"
+  }
+ ],
+ "summary": {
+  "total": 60,
+  "passed": 60,
+  "failed": 0
+ },
+ "by_scope": {
+  "v1.1.20": {
+   "passed": 10,
+   "total": 10
+  },
+  "v1.3.0": {
+   "passed": 50,
+   "total": 50
+  }
+ }
+}
