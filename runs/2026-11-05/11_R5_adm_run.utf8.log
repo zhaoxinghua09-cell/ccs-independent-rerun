@@ -1,0 +1,27 @@
+﻿vectors=15 must_fail=14 must_pass=1
+verdict_match=15/15  dims_match=15/15
+minimal_fix_flipped=14/14  controls_ok=4/4
+  ok   MF-C01     expect=MUST-PASS  got=PASS  dims=-
+  ok   MF-S01     expect=MUST-FAIL  got=FAIL  dims=Structure
+  ok   MF-S02     expect=MUST-FAIL  got=FAIL  dims=Schema
+  ok   MF-S03     expect=MUST-FAIL  got=FAIL  dims=Latency
+  ok   MF-S04     expect=MUST-FAIL  got=FAIL  dims=Cost
+  ok   MF-S05     expect=MUST-FAIL  got=FAIL  dims=Identity
+  ok   MF-S06     expect=MUST-FAIL  got=FAIL  dims=Integrity
+  ok   MF-S07     expect=MUST-FAIL  got=FAIL  dims=Security
+  ok   MF-S08     expect=MUST-FAIL  got=FAIL  dims=Security
+  ok   MF-S09     expect=MUST-FAIL  got=FAIL  dims=Security
+  ok   MF-S10     expect=MUST-FAIL  got=FAIL  dims=Security
+  ok   MF-S11     expect=MUST-FAIL  got=FAIL  dims=Security
+  ok   MF-W01     expect=MUST-FAIL  got=FAIL  dims=Integrity,Security
+  ok   MF-W02     expect=MUST-FAIL  got=FAIL  dims=Identity,Security
+  ok   MF-W03     expect=MUST-FAIL  got=FAIL  dims=Integrity,Security
+  ctl ok   control-unmodified       expect=PASS  got=PASS
+  ctl ok   control-path-traversal   expect=FAIL  got=FAIL
+  ctl ok   control-untrusted-issuer expect=FAIL  got=FAIL
+  ctl ok   control-tool-not-granted expect=FAIL  got=FAIL
+  shallow MF-W01: 2 steps, all pass per-call = True
+  shallow MF-W02: 3 steps, all pass per-call = True
+  shallow MF-W03: 3 steps, all pass per-call = False
+WROTE D:\Workbuddy\2026-11-05-10-10-55\mustfail_verdict.json
+WROTE D:\Workbuddy\2026-11-05-10-10-55\mustfail_verdict.md
