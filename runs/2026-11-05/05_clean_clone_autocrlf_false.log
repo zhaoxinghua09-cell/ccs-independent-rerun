@@ -1,0 +1,135 @@
+﻿=== CLEAN CLONE autocrlf=false 2026-11-05T12:37:02.3687972+08:00 ===
+git.exe : Cloning into 'D:\Workbuddy\2026-11-05-10-10-55\stranger_sim2\ccs-conformance-vectors'...
+所在位置 行:509 字符: 4
++   (& git -c core.autocrlf=false -c core.eol=lf clone --depth 1 https: ...
++    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Cloning into 'D...nce-vectors'...:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Updating files:  48% (301/621)
+Updating files:  49% (305/621)
+Updating files:  50% (311/621)
+Updating files:  51% (317/621)
+Updating files:  52% (323/621)
+Updating files:  53% (330/621)
+Updating files:  54% (336/621)
+Updating files:  55% (342/621)
+Updating files:  56% (348/621)
+Updating files:  57% (354/621)
+Updating files:  58% (361/621)
+Updating files:  59% (367/621)
+Updating files:  60% (373/621)
+Updating files:  61% (379/621)
+Updating files:  62% (386/621)
+Updating files:  63% (392/621)
+Updating files:  64% (398/621)
+Updating files:  65% (404/621)
+Updating files:  66% (410/621)
+Updating files:  67% (417/621)
+Updating files:  68% (423/621)
+Updating files:  69% (429/621)
+Updating files:  70% (435/621)
+Updating files:  71% (441/621)
+Updating files:  72% (448/621)
+Updating files:  73% (454/621)
+Updating files:  74% (460/621)
+Updating files:  75% (466/621)
+Updating files:  76% (472/621)
+Updating files:  77% (479/621)
+Updating files:  78% (485/621)
+Updating files:  79% (491/621)
+Updating files:  80% (497/621)
+Updating files:  81% (504/621)
+Updating files:  82% (510/621)
+Updating files:  83% (516/621)
+Updating files:  84% (522/621)
+Updating files:  85% (528/621)
+Updating files:  86% (535/621)
+Updating files:  87% (541/621)
+Updating files:  88% (547/621)
+Updating files:  89% (553/621)
+Updating files:  90% (559/621)
+Updating files:  91% (566/621)
+Updating files:  92% (572/621)
+Updating files:  93% (578/621)
+Updating files:  94% (584/621)
+Updating files:  95% (590/621)
+Updating files:  96% (597/621)
+Updating files:  97% (603/621)
+Updating files:  97% (606/621)
+Updating files:  98% (609/621)
+Updating files:  99% (615/621)
+Updating files: 100% (621/621)
+Updating files: 100% (621/621), done.
+CLONE_EXIT=0
+HEAD=cb88218f449c5bc184f0f487a2760eb9953da25a 2026-11-05 08:18:56 +0800
+autocrlf=true
+
+---- canonicalization-v1 ----
+         鉁?control:sibling-signature-differs 鈥?signature differs from negzero/signature.sig (different canonical preimages: string "-0" vs "0")
+         鉁?control:invalid-on-sibling-canonical 鈥?this positive signature is INVALID over negzero canonical preimage
+
+============================================================
+Checks: 81/81 passed
+Cases:  2/2 matched expected outcome
+
+鉁?ALL VECTORS PASSED
+EXIT=0
+
+---- v1.3.0 ----
+uv.exe : No case directories with expected.json found
+所在位置 行:518 字符: 8
++   $r = & uv run --no-project --with jcs --with cryptography python ch ...
++        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (No case directo...cted.json found:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+鉁?Manifest verified (v1.3.0/manifest.json)
+EXIT=1
+
+---- v1.3.0/sidecar-key ----
+MANIFEST VERIFICATION FAILED:
+  鉁?manifest.json not found
+EXIT=1
+
+---- v1.3.0/in-process-key ----
+MANIFEST VERIFICATION FAILED:
+  鉁?manifest.json not found
+EXIT=1
+
+---- technical-fit-v1 ----
+MANIFEST VERIFICATION FAILED:
+  鉁?manifest.json not found
+EXIT=1
+
+---- mustfail-v1 ----
+uv.exe : No case directories with expected.json found
+所在位置 行:518 字符: 8
++   $r = & uv run --no-project --with jcs --with cryptography python ch ...
++        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (No case directo...cted.json found:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+鉁?Manifest verified (mustfail-v1/manifest.json)
+EXIT=1
+
+---- v1.4.0-conformance ----
+         鉁?receipt.json: structure:nonempty:nonce 鈥?field 'nonce' must be non-empty
+
+============================================================
+Checks: 1477/1549 passed
+Cases:  66/66 matched expected outcome
+Receipts verified: 73/73 admitted by manifest
+
+鉁?ALL VECTORS PASSED
+EXIT=0
+
+---- technical-fit-v1 verify_pilot ----
+  case-C1-receipt.json -> exit=0 :: VALID 鈥?signature binds payload: C1 allow
+  case-C2-receipt.json -> exit=0 :: VALID 鈥?signature binds payload: C2 block
+  case-C3-receipt.json -> exit=0 :: VALID 鈥?signature binds payload: C3 block
+  case-C4-receipt.json -> exit=0 :: VALID 鈥?signature binds payload: C4 block
+  case-C5-tampered-receipt.json -> exit=1 :: INVALID 鈥?signature verification FAILED (tamper detected)
+  case-C6-replay-copy.json -> exit=0 :: VALID 鈥?signature binds payload: C1 allow
+
+=== END 2026-11-05T12:37:56.5559141+08:00 ===
