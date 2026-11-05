@@ -48,10 +48,14 @@
 | 内容版本 | 包指纹 | commit | 时间 |
 |---|---|---|---|
 | v1（6 份转录 + README + rerun_runs.json） | `2db5d6b1b3ef8c0798cd87026d1e743c94e48cc99b7820429e4608bebbc3d00c` | `4da9f2a3b04dff6540da4e43e4e7688d9647a164` | 2026-11-05T04:47:06Z |
-| v2（本版，17 件，含独立裁决器与签名验证器） | `dd2153c27ca07f0e9c7b638c247229e8b205ef7cf4f0f2c118494beb6406a4da` | 待本版提交后回填 | — |
+| v2（本版，17 件，含独立裁决器与签名验证器） | `dd2153c27ca07f0e9c7b638c247229e8b205ef7cf4f0f2c118494beb6406a4da` | `4adeb66445fbb8d5d44ade3637c615d802ede7e1` | 2026-11-05T05:05:03Z |
 
-> **不预填未发生的事**：v2 的 commit 号在本文件写就时尚未产生，故留「待回填」。
-> 回填前，v2 只有内锚（自证），没有外锚（第三方时间戳）。这个区别必须保留，不能混说。
+v2 外锚直达：
+`https://github.com/zhaoxinghua09-cell/ccs-independent-rerun/commit/4adeb66445fbb8d5d44ade3637c615d802ede7e1`
+
+> 说明：该 commit 提交的正是 `manifest.json`（17 件逐文件哈希），此前的 16 件内容文件已先此一步入库，
+> 故该 commit 时刻即为 v2 内容的第三方时间戳。本 `ATTESTATION.md` 在此之后单独提交，
+> 因其无法被自身哈希覆盖，故不列入 manifest。
 
 **加强（未执行）**
 
