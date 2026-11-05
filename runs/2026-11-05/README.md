@@ -5,6 +5,8 @@
 
 上游仓库：`https://github.com/DSHCorrectover/ccs-conformance-vectors`
 
+> 需要直接引用或转发本批次结论时，用包根的 **[`CITATION.md`](../../CITATION.md)**（单页可引用摘要：结论、数字、链接、复现命令、边界），不必逐份拼接转录。
+
 ---
 
 ## 批次一览
