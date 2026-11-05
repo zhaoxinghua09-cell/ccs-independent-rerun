@@ -19,12 +19,12 @@
 任何直接或间接损失，作者不承担责任。
 
 ## 4. 发布时间戳
-- 发布时间（UTC）：2026-11-05T05:02:48.865851+00:00
-- 发布时间（本地）：2026-11-05T13:02:48.865867
-- 内容版本：`2026.11.05.v2`
+- 发布时间（UTC）：2026-11-05T06:32:48.463401+00:00
+- 发布时间（本地）：2026-11-05T14:32:48.463420
+- 内容版本：`2026.11.05.v3`
 
 ## 5. 作品指纹（内容哈希）
-- 包指纹 SHA-256：dd2153c27ca07f0e9c7b638c247229e8b205ef7cf4f0f2c118494beb6406a4da
+- 包指纹 SHA-256：eed606e97402b97512cc521f010c03a18f3520424c4981465dad898d9643c478
 - 本指纹由发布包内全部文件的哈希按确定顺序合成，可作为该版本
   「于上述时间由 Xinghua Zhao (Steven Zhao) - LGD / SynomosAI initiative 发布」的完整性标识。篡改任一文件即导致指纹变化。
 - 合成算法：对 `manifest.json` 的 `files[]`（按 `path` 升序）依次累加 `path` + `0x00` + `sha256(path)`，取 SHA-256。
@@ -39,8 +39,8 @@
 
 - 署名：`Xinghua Zhao (Steven Zhao) — LGD / SynomosAI initiative`
 - 规范仓：`https://github.com/zhaoxinghua09-cell/ccs-independent-rerun`
-- 版本 / 批次：`2026.11.05.v2`
-- 包指纹：`dd2153c27ca07f0e9c7b638c247229e8b205ef7cf4f0f2c118494beb6406a4da`
+- 版本 / 批次：`2026.11.05.v3`
+- 包指纹：`eed606e97402b97512cc521f010c03a18f3520424c4981465dad898d9643c478`
 - 逐文件哈希见下方文件清单
 
 **外锚（第三方时间戳，GitHub 服务器侧记录）**
@@ -48,14 +48,22 @@
 | 内容版本 | 包指纹 | commit | 时间 |
 |---|---|---|---|
 | v1（6 份转录 + README + rerun_runs.json） | `2db5d6b1b3ef8c0798cd87026d1e743c94e48cc99b7820429e4608bebbc3d00c` | `4da9f2a3b04dff6540da4e43e4e7688d9647a164` | 2026-11-05T04:47:06Z |
-| v2（本版，17 件，含独立裁决器与签名验证器） | `dd2153c27ca07f0e9c7b638c247229e8b205ef7cf4f0f2c118494beb6406a4da` | `4adeb66445fbb8d5d44ade3637c615d802ede7e1` | 2026-11-05T05:05:03Z |
+| v2（17 件，含独立裁决器与签名验证器） | `dd2153c27ca07f0e9c7b638c247229e8b205ef7cf4f0f2c118494beb6406a4da` | `4adeb66445fbb8d5d44ade3637c615d802ede7e1` | 2026-11-05T05:05:03Z |
+| v3（本版，18 件，+ `CITATION.md` 可引用摘要） | `eed606e97402b97512cc521f010c03a18f3520424c4981465dad898d9643c478` | `85fa324b868b977bf9388afd1d4ad7cee5544660` | 2026-11-05T06:33:56Z |
 
 v2 外锚直达：
 `https://github.com/zhaoxinghua09-cell/ccs-independent-rerun/commit/4adeb66445fbb8d5d44ade3637c615d802ede7e1`
 
-> 说明：该 commit 提交的正是 `manifest.json`（17 件逐文件哈希），此前的 16 件内容文件已先此一步入库，
+> 说明：该 commit 提交的正是 `manifest.json`（逐文件哈希），此前的 16 件内容文件已先此一步入库，
 > 故该 commit 时刻即为 v2 内容的第三方时间戳。本 `ATTESTATION.md` 在此之后单独提交，
 > 因其无法被自身哈希覆盖，故不列入 manifest。
+>
+> **v3 的 commit 号在本文件写就时尚未产生，故留「待回填」。** 回填前 v3 只有内锚（自证），
+> 没有外锚（第三方时间戳）。这个区别必须保留，不能混说。
+>
+> v3 外锚已回填：`https://github.com/zhaoxinghua09-cell/ccs-independent-rerun/commit/85fa324b868b977bf9388afd1d4ad7cee5544660`
+> （2026-11-05T06:33:56Z）。该 commit 提交的正是 v3 的 `manifest.json`（18 件逐文件哈希）；
+> `CITATION.md` 与更新后的批次 `README.md` 已先此一步入库。本 `ATTESTATION.md` 仍在之后再提交，故不入 manifest。
 
 **加强（未执行）**
 
@@ -67,6 +75,7 @@ v2 外锚直达：
 
 | 文件 | SHA-256 |
 |---|---|
+| CITATION.md | ac56e951c9d177795fba8a75ab8e985ddbbd77f44f6626ad4ed61cff3e778b6f |
 | runs/2026-11-05/01_stranger_effff90.log | 56113d2211b77118a54f0b419ce90dcc87eb4346c4afc53eadf34652cf22431f |
 | runs/2026-11-05/02_stranger_main_cb88218.log | eca1663f6ce5c11ec10a5667b0bc2782516c6a06dfc824812d413abc58dfa1db |
 | runs/2026-11-05/03_negative_controls_utf8.log | 6f3ff6a2e0e4a0adfa69892bedb4c50a90e5eb306e651d5e0fe65a29812b8287 |
@@ -80,9 +89,9 @@ v2 外锚直达：
 | runs/2026-11-05/11_R5_adm_run.log | fed9fb3ce83f4ce6273819ba5a9ce8cdb693436c13fc2f0ab2f2f7f26ab3ef36 |
 | runs/2026-11-05/12_R6_sig_run.log | b5bf2425d97ddd4f6ee088780aa2c38bc684e299de4755394ce6e064e7f7509c |
 | runs/2026-11-05/13_independent_verdict_and_signature.md | 3dc290ada7fbe856e2af9a2f28be85f1430b19fb6a212a92292d86736c37d2fd |
-| runs/2026-11-05/README.md | 9a7975491b2da92e598be1ad027f653612c638aa329bba410e475b070e334710 |
+| runs/2026-11-05/README.md | 0d7910b3bc24e6c34fb2a6c987ee340b5a0eb35d28dae7f2ee3ed6503b8b20c7 |
 | runs/2026-11-05/mustfail_verdict.json | bf90e237c571357010d3786d7127f4196e637b62f72858fbd5b7ef836b10617b |
 | runs/2026-11-05/rerun_runs.json | 2a100347d3ccfcb57b1c85bd6738b01d53f3dc904d65993eab6d5598afbf943c |
 | runs/2026-11-05/sig_vectors.json | 74c6d64260211ef0e0d2930763c59825e53c5d4632eb6d4e6bbcf6bddbcd860d |
 
-**文件数：17**
+**文件数：18**
