@@ -1,13 +1,17 @@
 {
   "schema": "ownership-attestation/1.0",
   "package": "CCS independent rerun - 2026-11-05 batch",
-  "version": "2026.11.05.v2",
+  "version": "2026.11.05.v3",
   "author": "Xinghua Zhao (Steven Zhao) - LGD / SynomosAI initiative",
   "year": "2026",
-  "timestamp_utc": "2026-11-05T05:02:48.865851+00:00",
-  "timestamp_local": "2026-11-05T13:02:48.865867",
-  "package_fingerprint_sha256": "dd2153c27ca07f0e9c7b638c247229e8b205ef7cf4f0f2c118494beb6406a4da",
+  "timestamp_utc": "2026-11-05T06:32:48.463401+00:00",
+  "timestamp_local": "2026-11-05T14:32:48.463420",
+  "package_fingerprint_sha256": "eed606e97402b97512cc521f010c03a18f3520424c4981465dad898d9643c478",
   "files": [
+    {
+      "path": "CITATION.md",
+      "sha256": "ac56e951c9d177795fba8a75ab8e985ddbbd77f44f6626ad4ed61cff3e778b6f"
+    },
     {
       "path": "runs/2026-11-05/01_stranger_effff90.log",
       "sha256": "56113d2211b77118a54f0b419ce90dcc87eb4346c4afc53eadf34652cf22431f"
@@ -62,7 +66,7 @@
     },
     {
       "path": "runs/2026-11-05/README.md",
-      "sha256": "9a7975491b2da92e598be1ad027f653612c638aa329bba410e475b070e334710"
+      "sha256": "0d7910b3bc24e6c34fb2a6c987ee340b5a0eb35d28dae7f2ee3ed6503b8b20c7"
     },
     {
       "path": "runs/2026-11-05/mustfail_verdict.json",
