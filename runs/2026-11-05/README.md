@@ -30,6 +30,25 @@
 机器可读汇总：`rerun_runs.json`（含 `R5` / `R6` 登记与 `correction` 块）
 机读明细：`mustfail_verdict.json`、`sig_vectors.json`
 
+### 11 与 12 的编码（附 UTF-8 镜像）
+
+`11_R5_adm_run.log`、`12_R6_sig_run.log` 是 **UTF-16LE**（Windows PowerShell 重定向的默认编码），
+原样保留，未做任何改写——它们是原始转录，不动的理由就在这里。
+
+同时提供 **逐字对应的 UTF-8 镜像**，方便直接阅读或 `curl`：
+
+| 原始（UTF-16LE） | 镜像（UTF-8，LF） |
+|---|---|
+| `11_R5_adm_run.log`（3142B） | `11_R5_adm_run.utf8.log`（1546B） |
+| `12_R6_sig_run.log`（356B） | `12_R6_sig_run.utf8.log`（175B） |
+
+转换只做两件事：UTF-16LE → UTF-8、CRLF → LF。**未增删任何字符**，可用两份互校。
+字节数不同是编码差异，不是内容差异。
+
+> 附带说明一个实测现象：GitHub 匿名 Contents API 对 UTF-16 文件会在 `content` 字段里做转码返回
+> （`size` 报 356，解开 base64 只得 180 字节），所以**拿 API 的字节数去比对 manifest 会得到假失败**。
+> 核对字节数请走 `raw.githubusercontent.com`。
+
 ---
 
 ## 已知环境坑（两份转录必须并读）
