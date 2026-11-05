@@ -1,12 +1,12 @@
 {
   "schema": "ownership-attestation/1.0",
   "package": "CCS independent rerun - 2026-11-05 batch",
-  "version": "2026.11.05",
+  "version": "2026.11.05.v2",
   "author": "Xinghua Zhao (Steven Zhao) - LGD / SynomosAI initiative",
   "year": "2026",
-  "timestamp_utc": "2026-11-05T04:45:48.867942+00:00",
-  "timestamp_local": "2026-11-05T12:45:48.867959",
-  "package_fingerprint_sha256": "2db5d6b1b3ef8c0798cd87026d1e743c94e48cc99b7820429e4608bebbc3d00c",
+  "timestamp_utc": "2026-11-05T05:02:48.865851+00:00",
+  "timestamp_local": "2026-11-05T13:02:48.865867",
+  "package_fingerprint_sha256": "dd2153c27ca07f0e9c7b638c247229e8b205ef7cf4f0f2c118494beb6406a4da",
   "files": [
     {
       "path": "runs/2026-11-05/01_stranger_effff90.log",
@@ -33,12 +33,48 @@
       "sha256": "f6e5d02fd1c74cddc2c99c3503f98d478e887422f05973d05ae0ed6d90f469e7"
     },
     {
+      "path": "runs/2026-11-05/07_admission_verifier.py",
+      "sha256": "50a3abda937b5a610c8419ef5082f4d79beb8799f325992bcabd31fad338d519"
+    },
+    {
+      "path": "runs/2026-11-05/08_verify_sig_vectors.py",
+      "sha256": "e8e1b861137afe7d7aa77d6373b2bb9121b0b32ad6380edf6ad7f49e411dc9e0"
+    },
+    {
+      "path": "runs/2026-11-05/09_mustfail_verdict.md",
+      "sha256": "8abf022dcc9ed9edda5db6c4caa33529530d9f975292699f9d1c0c7749d6205b"
+    },
+    {
+      "path": "runs/2026-11-05/10_sig_vectors.md",
+      "sha256": "4732e414a2b42983e37e2711167b6e0ba381d22cc240bdfa14516fa57dbe493d"
+    },
+    {
+      "path": "runs/2026-11-05/11_R5_adm_run.log",
+      "sha256": "fed9fb3ce83f4ce6273819ba5a9ce8cdb693436c13fc2f0ab2f2f7f26ab3ef36"
+    },
+    {
+      "path": "runs/2026-11-05/12_R6_sig_run.log",
+      "sha256": "b5bf2425d97ddd4f6ee088780aa2c38bc684e299de4755394ce6e064e7f7509c"
+    },
+    {
+      "path": "runs/2026-11-05/13_independent_verdict_and_signature.md",
+      "sha256": "3dc290ada7fbe856e2af9a2f28be85f1430b19fb6a212a92292d86736c37d2fd"
+    },
+    {
       "path": "runs/2026-11-05/README.md",
-      "sha256": "675393d66d7a3c76d6b9cf94bb9df2fe6593dbe768bfbb293d1db573237cfbea"
+      "sha256": "9a7975491b2da92e598be1ad027f653612c638aa329bba410e475b070e334710"
+    },
+    {
+      "path": "runs/2026-11-05/mustfail_verdict.json",
+      "sha256": "bf90e237c571357010d3786d7127f4196e637b62f72858fbd5b7ef836b10617b"
     },
     {
       "path": "runs/2026-11-05/rerun_runs.json",
       "sha256": "2a100347d3ccfcb57b1c85bd6738b01d53f3dc904d65993eab6d5598afbf943c"
+    },
+    {
+      "path": "runs/2026-11-05/sig_vectors.json",
+      "sha256": "74c6d64260211ef0e0d2930763c59825e53c5d4632eb6d4e6bbcf6bddbcd860d"
     }
   ]
 }
