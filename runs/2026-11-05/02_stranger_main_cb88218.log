@@ -1,0 +1,317 @@
+﻿=== RERUN AGAINST CURRENT MAIN 2026-11-05T11:47:37.3311605+08:00 ===
+git.exe : fatal: unable to access 'https://github.com/DSHCorrectover/ccs-conformance-vectors.git/': schannel: failed to
+ receive handshake, SSL/TLS connection failed
+所在位置 行:507 字符: 2
++ (& git fetch origin 2>&1) | Out-File -FilePath $log -Append -Encoding ...
++  ~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (fatal: unable t...nnection failed:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+FETCH_EXIT=128
+Your branch is up to date with 'origin/main'.
+git.exe : Previous HEAD position was effff90 README: reference draft-correctover-ccs-09 (individual submission, not an 
+RFC/IETF endorsement)
+所在位置 行:509 字符: 2
++ (& git checkout main 2>&1) | Out-File -FilePath $log -Append -Encodin ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Previous HEAD p...TF endorsement):String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Switched to branch 'main'
+git.exe : fatal: unable to access 'https://github.com/DSHCorrectover/ccs-conformance-vectors.git/': schannel: failed to
+ receive handshake, SSL/TLS connection failed
+所在位置 行:510 字符: 2
++ (& git pull --ff-only 2>&1) | Out-File -FilePath $log -Append -Encodi ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (fatal: unable t...nnection failed:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+PULL_EXIT=1
+HEAD: cb88218f449c5bc184f0f487a2760eb9953da25a 2026-11-05 08:18:56 +0800 Add vectors/technical-fit-v1: IICP x CCS pilot fixtures (C1-C6, signed, offline-verifiable)
+VECTORS DIRS:
+vectors/canonicalization-v1
+vectors/mustfail-v1
+vectors/technical-fit-v1
+vectors/v1.1.20
+vectors/v1.3.0
+vectors/v1.4.0-conformance
+鉁?Manifest verified (v1.4.0-conformance/manifest.json)
+
+鉁?PASS  01-allow
+         Expected: valid
+
+鉁?PASS  02-deny-pre-admission
+         Expected: valid
+
+鉁?PASS  03-chain-of-3
+         Expected: valid
+
+鉁?PASS  04-tampered-negative
+         Expected: invalid 鈥?signature mismatch
+         鉁?receipt-tampered.json: signature:ed25519 鈥?signature mismatch: signature does not verify over JCS canonical bytes
+
+鉁?PASS  05-cross-field-semantic\05a-invalid-timestamp-month13
+         Expected: invalid 鈥?timestamp denotes impossible instant
+         鉁?receipt.json: timestamp:valid:issued_at 鈥?timestamp denotes impossible instant: '2025-13-01T00:00:00Z' (month must be in 1..12)
+
+鉁?PASS  05-cross-field-semantic\05b-sandbox-flag-mismatch
+         Expected: invalid 鈥?sandbox flag not bound to principal
+         鉁?receipt.json: cross-field:sandbox-bound-to-principal 鈥?sandbox flag not bound to principal (sandbox=true but issuer/principal/environment indicates production)
+
+鉁?PASS  05-cross-field-semantic\05c-response-hash-mismatch
+         Expected: invalid 鈥?response_hash does not match response body
+         鉁?receipt.json: hash:response_hash-matches-body 鈥?response_hash mismatch: declared aaaaaaaaaaaaaaaa... != actual e1d379b2b424efcb...
+
+鉁?PASS  05-cross-field-semantic\05d-verdict-response-inconsistency
+         Expected: invalid 鈥?deny verdict carries response commitment
+         鉁?receipt.json: cross-field:block-envelope 鈥?verdict=block but response body is not a block envelope {blocked:true, reason:...}
+         鉁?receipt.json: cross-field:deny-no-response-commitment 鈥?deny verdict carries response commitment
+
+鉁?PASS  06-l2-behavior\06a-behavior-not-observed
+         Expected: valid
+
+鉁?PASS  06-l2-behavior\06b-behavior-observed-allowed
+         Expected: valid
+
+鉁?PASS  06-l2-behavior\06c-behavior-observed-rejected
+         Expected: valid
+
+鉁?PASS  06-l2-behavior\06d-behavior-wrong-l1-digest
+         Expected: invalid 鈥?linked_l1_receipt_digest mismatch
+         鉁?receipt.json: l2:linked-l1-digest-matches 鈥?linked_l1_receipt_digest mismatch: declared sha256:fffffffffffffffff... != actual sha256:dba6c272e7ec1859d...
+
+鉁?PASS  07-structure-negatives\07a-missing-action
+         Expected: invalid 鈥?missing required field
+         鉁?receipt.json: structure:missing-field 鈥?missing required field(s): ['action']
+
+鉁?PASS  07-structure-negatives\07a-missing-args_digest
+         Expected: invalid 鈥?missing required field
+         鉁?receipt.json: structure:missing-field 鈥?missing required field(s): ['args_digest']
+
+鉁?PASS  07-structure-negatives\07a-missing-audience
+         Expected: invalid 鈥?missing required field
+         鉁?receipt.json: structure:missing-field 鈥?missing required field(s): ['audience']
+
+鉁?PASS  07-structure-negatives\07a-missing-config_hash
+         Expected: invalid 鈥?missing required field
+         鉁?receipt.json: structure:missing-field 鈥?missing required field(s): ['config_hash']
+
+鉁?PASS  07-structure-negatives\07a-missing-deployment_mode
+         Expected: invalid 鈥?missing required field
+         鉁?receipt.json: structure:missing-field 鈥?missing required field(s): ['deployment_mode']
+
+鉁?PASS  07-structure-negatives\07a-missing-expires_at
+         Expected: invalid 鈥?missing required field
+         鉁?receipt.json: structure:missing-field 鈥?missing required field(s): ['expires_at']
+
+鉁?PASS  07-structure-negatives\07a-missing-issued_at
+         Expected: invalid 鈥?missing required field
+         鉁?receipt.json: structure:missing-field 鈥?missing required field(s): ['issued_at']
+
+鉁?PASS  07-structure-negatives\07a-missing-issuer
+         Expected: invalid 鈥?missing required field
+         鉁?receipt.json: structure:missing-field 鈥?missing required field(s): ['issuer']
+
+鉁?PASS  07-structure-negatives\07a-missing-latency_us
+         Expected: invalid 鈥?missing required field
+         鉁?receipt.json: structure:missing-field 鈥?missing required field(s): ['latency_us']
+
+鉁?PASS  07-structure-negatives\07a-missing-max_clock_skew
+         Expected: invalid 鈥?missing required field
+         鉁?receipt.json: structure:missing-field 鈥?missing required field(s): ['max_clock_skew']
+
+鉁?PASS  07-structure-negatives\07a-missing-nonce
+         Expected: invalid 鈥?missing required field
+         鉁?receipt.json: structure:missing-field 鈥?missing required field(s): ['nonce']
+
+鉁?PASS  07-structure-negatives\07a-missing-params_hash
+         Expected: invalid 鈥?missing required field
+         鉁?receipt.json: structure:missing-field 鈥?missing required field(s): ['params_hash']
+
+鉁?PASS  07-structure-negatives\07a-missing-public_key
+         Expected: invalid 鈥?missing required field
+         鉁?receipt.json: structure:missing-field 鈥?missing required field(s): ['public_key']
+
+鉁?PASS  07-structure-negatives\07a-missing-public_key_fingerprint
+         Expected: invalid 鈥?missing required field
+         鉁?receipt.json: structure:missing-field 鈥?missing required field(s): ['public_key_fingerprint']
+
+鉁?PASS  07-structure-negatives\07a-missing-receipt_version
+         Expected: invalid 鈥?missing required field
+         鉁?receipt.json: structure:missing-field 鈥?missing required field(s): ['receipt_version']
+
+鉁?PASS  07-structure-negatives\07a-missing-request_hash
+         Expected: invalid 鈥?missing required field
+         鉁?receipt.json: structure:missing-field 鈥?missing required field(s): ['request_hash']
+
+鉁?PASS  07-structure-negatives\07a-missing-response_hash
+         Expected: invalid 鈥?missing required field
+         鉁?receipt.json: structure:missing-field 鈥?missing required field(s): ['response_hash']
+
+鉁?PASS  07-structure-negatives\07a-missing-rule_summary
+         Expected: invalid 鈥?missing required field
+         鉁?receipt.json: structure:missing-field 鈥?missing required field(s): ['rule_summary']
+
+鉁?PASS  07-structure-negatives\07a-missing-rule_version
+         Expected: invalid 鈥?missing required field
+         鉁?receipt.json: structure:missing-field 鈥?missing required field(s): ['rule_version']
+
+鉁?PASS  07-structure-negatives\07a-missing-runtime_context_hash
+         Expected: invalid 鈥?missing required field
+         鉁?receipt.json: structure:missing-field 鈥?missing required field(s): ['runtime_context_hash']
+
+鉁?PASS  07-structure-negatives\07a-missing-sequence
+         Expected: invalid 鈥?missing required field
+         鉁?receipt.json: structure:missing-field 鈥?missing required field(s): ['sequence']
+
+鉁?PASS  07-structure-negatives\07a-missing-signature
+         Expected: invalid 鈥?missing required field
+         鉁?receipt.json: structure:missing-field 鈥?missing required field(s): ['signature']
+
+鉁?PASS  07-structure-negatives\07a-missing-signing_algorithm
+         Expected: invalid 鈥?missing required field
+         鉁?receipt.json: structure:missing-field 鈥?missing required field(s): ['signing_algorithm']
+
+鉁?PASS  07-structure-negatives\07a-missing-timestamp
+         Expected: invalid 鈥?missing required field
+         鉁?receipt.json: structure:missing-field 鈥?missing required field(s): ['timestamp']
+
+鉁?PASS  07-structure-negatives\07a-missing-tool
+         Expected: invalid 鈥?missing required field
+         鉁?receipt.json: structure:missing-field 鈥?missing required field(s): ['tool']
+
+鉁?PASS  07-structure-negatives\07a-missing-tool_call_id
+         Expected: invalid 鈥?missing required field
+         鉁?receipt.json: structure:missing-field 鈥?missing required field(s): ['tool_call_id']
+
+鉁?PASS  07-structure-negatives\07a-missing-trace_id
+         Expected: invalid 鈥?missing required field
+         鉁?receipt.json: structure:missing-field 鈥?missing required field(s): ['trace_id']
+
+鉁?PASS  07-structure-negatives\07a-missing-verdict
+         Expected: invalid 鈥?missing required field
+         鉁?receipt.json: structure:missing-field 鈥?missing required field(s): ['verdict']
+
+鉁?PASS  07-structure-negatives\07a-missing-verified_at
+         Expected: invalid 鈥?missing required field
+         鉁?receipt.json: structure:missing-field 鈥?missing required field(s): ['verified_at']
+
+鉁?PASS  07-structure-negatives\07a-missing-verifier_source_class
+         Expected: invalid 鈥?missing required field
+         鉁?receipt.json: structure:missing-field 鈥?missing required field(s): ['verifier_source_class']
+
+鉁?PASS  07-structure-negatives\07b-unknown-field
+         Expected: invalid 鈥?unknown field in strict mode
+         鉁?receipt.json: structure:unknown-field 鈥?unknown field(s) in strict mode: ['extension_field']
+
+鉁?PASS  07-structure-negatives\07c-latency-as-string
+         Expected: invalid 鈥?latency_us must be non-negative number
+         鉁?receipt.json: field:latency_us 鈥?latency_us must be non-negative number, got '1000'
+
+鉁?PASS  07-structure-negatives\07c-max-clock-skew-as-string
+         Expected: invalid 鈥?max_clock_skew must be non-negative number
+         鉁?receipt.json: field:max_clock_skew 鈥?max_clock_skew must be non-negative number, got 'thirty'
+
+鉁?PASS  07-structure-negatives\07c-sequence-as-string
+         Expected: invalid 鈥?sequence must be non-negative integer
+         鉁?receipt.json: field:sequence 鈥?sequence must be non-negative integer, got 'zero'
+
+鉁?PASS  07-structure-negatives\07c-timestamp-as-boolean
+         Expected: invalid 鈥?timestamp must not be boolean
+         鉁?receipt.json: field:timestamp-type 鈥?timestamp must be numeric or ISO 8601 string, got bool
+
+鉁?PASS  07-structure-negatives\07c-verdict-as-number
+         Expected: invalid 鈥?verdict must be 'allow' or 'block'
+         鉁?receipt.json: field:verdict-value 鈥?verdict must be 'allow' or 'block', got 1
+
+鉁?PASS  08-temporal-negatives\08a-expired
+         Expected: invalid 鈥?expires_at is before issued_at
+         鉁?receipt.json: cross-field:expires-after-issued 鈥?expires_at (2025-06-14T12:00:00Z) is before issued_at (2025-06-15T12:00:00Z)
+
+鉁?PASS  08-temporal-negatives\08b-future-timestamp
+         Expected: invalid 鈥?timestamp skew exceeds max_clock_skew
+         鉁?receipt.json: cross-field:clock-skew 鈥?timestamp skew 3600.0s exceeds max_clock_skew 30s
+
+鉁?PASS  08-temporal-negatives\08c-issued-after-timestamp
+         Expected: invalid 鈥?issued_at is after timestamp
+         鉁?receipt.json: cross-field:issued-before-timestamp 鈥?issued_at (2025-06-15T13:00:00Z) is after timestamp (2025-06-15T12:00:00Z)
+
+鉁?PASS  08-temporal-negatives\08d-clock-skew-boundary
+         Expected: invalid 鈥?timestamp skew exceeds max_clock_skew
+         鉁?receipt.json: cross-field:clock-skew 鈥?timestamp skew 30.000000953674316s exceeds max_clock_skew 30s
+
+鉁?PASS  08-temporal-negatives\08e-verified-after-expiry
+         Expected: invalid 鈥?verified_at is 2505600s after expires_at, beyond max_clock_skew
+         鉁?receipt.json: cross-field:verified-within-window 鈥?verified_at is 2505600.0s after expires_at; exceeds max_clock_skew 30s (window closed before verification by 2505570.0s beyond tolerance)
+
+鉁?PASS  09-identity-negatives\09a-fingerprint-mismatch
+         Expected: invalid 鈥?fingerprint mismatch
+         鉁?receipt.json: cross-field:fingerprint-matches 鈥?declared fingerprint '0000000000000000' != computed '26a02d86f5d0a10f'
+
+鉁?PASS  09-identity-negatives\09b-wrong-algorithm
+         Expected: invalid 鈥?signing_algorithm must be 'Ed25519'
+         鉁?receipt.json: field:signing_algorithm 鈥?signing_algorithm must be 'Ed25519', got 'ES256'
+
+鉁?PASS  09-identity-negatives\09c-malformed-public-key
+         Expected: invalid 鈥?public key is not valid base64
+         鉁?receipt.json: field:public-key-format 鈥?public key is not valid base64: invalid base64 characters
+
+鉁?PASS  10-chain-negatives\10a-sequence-gap
+         Expected: invalid 鈥?sequence gap
+         鉁?receipt-1.json: chain:sequence-contiguous 鈥?sequence gap or order error: got [0, 2], expected [0, 1]
+         鉁?receipt-1.json: chain:prev-hash-matches 鈥?prev_receipt_digest in runtime context is not the digest of predecessor receipt-1.json: declared sha256:64972f6fd7ef4b0e0d4a48c90... computed anchor sha256:620bf19fdcabf6adeaff5d00c...
+         鉁?receipt-1.json: chain:spec-prev-crosscheck 鈥?chain.json expected_prev_digests[1] sha256:64972f6fd7ef4b0e0d4a48c90... disagrees with computed anchor sha256:620bf19fdcabf6adeaff5d00c...
+
+鉁?PASS  10-chain-negatives\10b-prev-hash-mismatch
+         Expected: invalid 鈥?prev_hash mismatch
+         鉁?receipt-1.json: chain:sequence-contiguous 鈥?sequence gap or order error: got [0, 2], expected [0, 1]
+         鉁?receipt-1.json: chain:prev-hash-matches 鈥?prev_receipt_digest in runtime context is not the digest of predecessor receipt-1.json: declared sha256:aaaaaaaaaaaaaaaaaaaaaaaaa... computed anchor sha256:4dabb509a1c399caa4441b21c...
+         鉁?receipt-1.json: chain:spec-prev-crosscheck 鈥?chain.json expected_prev_digests[1] sha256:dbdfa699dc1e229dc883a05d0... disagrees with computed anchor sha256:4dabb509a1c399caa4441b21c...
+
+鉁?PASS  10-chain-negatives\10c-trace-id-mismatch
+         Expected: invalid 鈥?trace_id differ
+         鉁?receipt-1.json: chain:trace-id-consistent 鈥?trace_ids differ: {'different-trace-id', 'conformance-v1.4.0-trace'}
+         鉁?receipt-1.json: chain:sequence-contiguous 鈥?sequence gap or order error: got [0, 2], expected [0, 1]
+         鉁?receipt-1.json: chain:prev-hash-matches 鈥?prev_receipt_digest in runtime context is not the digest of predecessor receipt-1.json: declared sha256:198f7b4b4ebcdc44fcb484847... computed anchor sha256:3062deb0581a3ed56c0fb5a88...
+         鉁?receipt-1.json: chain:spec-prev-crosscheck 鈥?chain.json expected_prev_digests[1] sha256:198f7b4b4ebcdc44fcb484847... disagrees with computed anchor sha256:3062deb0581a3ed56c0fb5a88...
+
+鉁?PASS  10-chain-negatives\10d-empty-chain
+         Expected: invalid 鈥?no predecessor receipt in chain
+         鉁?receipt-1.json: chain:sequence-contiguous 鈥?sequence gap or order error: got [2], expected [0]
+         鉁?receipt-1.json: chain:empty-chain-no-predecessor 鈥?first receipt sequence=2 but no predecessor receipt in chain
+
+鉁?PASS  10-chain-negatives\10e-prev-hash-unanchored
+         Expected: invalid 鈥?prev_hash mismatch
+         鉁?receipt-1.json: chain:prev-hash-matches 鈥?prev_receipt_digest in runtime context is not the digest of predecessor receipt-1.json: declared sha256:bbbbbbbbbbbbbbbbbbbbbbbbb... computed anchor sha256:1b3266a0fdeb658e65f248605...
+         鉁?receipt-1.json: chain:spec-prev-crosscheck 鈥?chain.json expected_prev_digests[1] sha256:bbbbbbbbbbbbbbbbbbbbbbbbb... disagrees with computed anchor sha256:1b3266a0fdeb658e65f248605...
+
+鉁?PASS  11-integrity-negatives\11a-request-hash-mismatch
+         Expected: invalid 鈥?request_hash mismatch
+         鉁?receipt.json: hash:request_hash-matches 鈥?request_hash mismatch: declared bbbbbbbbbbbbbbbb... != actual 6d38e904c3a6980a...
+
+鉁?PASS  11-integrity-negatives\11b-params-hash-mismatch
+         Expected: invalid 鈥?params_hash mismatch
+         鉁?receipt.json: hash:params_hash-matches 鈥?params_hash mismatch: declared cccccccccccccccc... != actual 37f0091cfc62876f...
+
+鉁?PASS  11-integrity-negatives\11c-config-hash-mismatch
+         Expected: invalid 鈥?config_hash mismatch
+         鉁?receipt.json: hash:config_hash-matches 鈥?config_hash mismatch: declared dddddddddddddddd... != actual 0abcb7ab76d5cb8b...
+
+鉁?PASS  12-nonce-negatives\12a-nonce-replay
+         Expected: invalid 鈥?duplicate nonce detected across chain
+         鉁?receipt-1.json: chain:nonce-unique 鈥?duplicate nonce detected across chain: ['replayed-nonce-0001']
+         鉁?receipt-1.json: chain:prev-hash-matches 鈥?prev_receipt_digest in runtime context is not the digest of predecessor receipt-1.json: declared sha256:42e55e34ad042a50ff0ab3d7c... computed anchor sha256:8070c9b90f794f7c62a4bec7e...
+         鉁?receipt-1.json: chain:spec-prev-crosscheck 鈥?chain.json expected_prev_digests[1] sha256:42e55e34ad042a50ff0ab3d7c... disagrees with computed anchor sha256:8070c9b90f794f7c62a4bec7e...
+
+鉁?PASS  12-nonce-negatives\12b-empty-nonce
+         Expected: invalid 鈥?nonce must be non-empty
+         鉁?receipt.json: structure:nonempty:nonce 鈥?field 'nonce' must be non-empty
+
+============================================================
+Checks: 1477/1549 passed
+Cases:  66/66 matched expected outcome
+Receipts verified: 73/73 admitted by manifest
+
+鉁?ALL VECTORS PASSED
+RUN_V140_EXIT=0
+=== END 2026-11-05T11:48:31.9531579+08:00 ===
