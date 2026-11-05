@@ -1,0 +1,44 @@
+{
+  "schema": "ownership-attestation/1.0",
+  "package": "CCS independent rerun - 2026-11-05 batch",
+  "version": "2026.11.05",
+  "author": "Xinghua Zhao (Steven Zhao) - LGD / SynomosAI initiative",
+  "year": "2026",
+  "timestamp_utc": "2026-11-05T04:45:48.867942+00:00",
+  "timestamp_local": "2026-11-05T12:45:48.867959",
+  "package_fingerprint_sha256": "2db5d6b1b3ef8c0798cd87026d1e743c94e48cc99b7820429e4608bebbc3d00c",
+  "files": [
+    {
+      "path": "runs/2026-11-05/01_stranger_effff90.log",
+      "sha256": "56113d2211b77118a54f0b419ce90dcc87eb4346c4afc53eadf34652cf22431f"
+    },
+    {
+      "path": "runs/2026-11-05/02_stranger_main_cb88218.log",
+      "sha256": "eca1663f6ce5c11ec10a5667b0bc2782516c6a06dfc824812d413abc58dfa1db"
+    },
+    {
+      "path": "runs/2026-11-05/03_negative_controls_utf8.log",
+      "sha256": "6f3ff6a2e0e4a0adfa69892bedb4c50a90e5eb306e651d5e0fe65a29812b8287"
+    },
+    {
+      "path": "runs/2026-11-05/04_allsets_sweep.log",
+      "sha256": "d911746daba86af6ca423c831c5f06dd32e5b715b0acffe6396b7d2f4de837a0"
+    },
+    {
+      "path": "runs/2026-11-05/05_clean_clone_autocrlf_false.log",
+      "sha256": "c0092f7dda315debf1761e882774ec1601c0112e109887505be4ee9bdc1a9d28"
+    },
+    {
+      "path": "runs/2026-11-05/06_headline_pristine_utf8.log",
+      "sha256": "f6e5d02fd1c74cddc2c99c3503f98d478e887422f05973d05ae0ed6d90f469e7"
+    },
+    {
+      "path": "runs/2026-11-05/README.md",
+      "sha256": "675393d66d7a3c76d6b9cf94bb9df2fe6593dbe768bfbb293d1db573237cfbea"
+    },
+    {
+      "path": "runs/2026-11-05/rerun_runs.json",
+      "sha256": "2a100347d3ccfcb57b1c85bd6738b01d53f3dc904d65993eab6d5598afbf943c"
+    }
+  ]
+}
