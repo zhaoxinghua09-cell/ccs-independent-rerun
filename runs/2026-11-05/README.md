@@ -16,8 +16,17 @@
 | 03 | `03_negative_controls_utf8.log` | 负控 NC-A（篡改被 manifest 覆盖的文件，manifest 不动）/ NC-B（篡改 receipt 并重新钉住 manifest） | NC-A：`MANIFEST VERIFICATION FAILED` / NC-B：`Manifest verified` → `SOME VECTORS FAILED` + 2 条 FAIL 行 | 0 / 1 |
 | 04 | `04_allsets_sweep.log` | 6 个向量集遍历（**`core.autocrlf=true` 环境**，见「已知环境坑」） | `v1.4.0-conformance` 通过；其余见下 | 混合 |
 | 05 | `05_clean_clone_autocrlf_false.log` | 干净 clone（`core.autocrlf=false`、`core.eol=lf`、`--depth 1`），逐集复跑 + `technical-fit-v1` 的 C1–C6 逐例验签 | `canonicalization-v1`：`Checks: 81/81 passed`；`v1.4.0-conformance`：`1477/1549` + `Receipts 73/73`；C1–C4/C6 `VALID`，C5（篡改）`INVALID` | 见文件 |
+| 06 | `06_headline_pristine_utf8.log` | 同一命令的 UTF-8 干净捕获（对照 `鉁?` 伪影） | 与 02 判定字段逐字一致 | 0 |
+| 07 | `07_admission_verifier.py` | `mustfail-v1` 的**独立 admission 裁决器**（零依赖）。上游只给向量与期望，未提供裁决器 | 15/15 裁决对上；14/14 最小修复后转 PASS；4/4 松紧度负控 | 0 |
+| 08 | `08_verify_sig_vectors.py` | `v1.1.20` + `v1.3.0` 的**签名与链接验证器**（依赖 `jcs` + `cryptography`）。上游未提供执行器 | 60/60 项通过；含 3 条篡改负控（改任一字段后签名必须失败） | 0 |
+| 09 | `09_mustfail_verdict.md` | 07 的逐向量裁决明细 | 见文件 | — |
+| 10 | `10_sig_vectors.md` | 08 的逐项验证明细 | 见文件 | — |
+| 11 | `11_R5_adm_run.log` | 07 原始运行输出（未编辑） | `verdict_match=15/15  dims_match=15/15` | 0 |
+| 12 | `12_R6_sig_run.log` | 08 原始运行输出（未编辑） | `checks=60 passed=60 failed=0` | 0 |
+| 13 | `13_independent_verdict_and_signature.md` | 07/08 的说明文档：为什么之前判「不可跑」是判错了 | 见文件 | — |
 
-机器可读汇总：`rerun_runs.json`
+机器可读汇总：`rerun_runs.json`（含 `R5` / `R6` 登记与 `correction` 块）
+机读明细：`mustfail_verdict.json`、`sig_vectors.json`
 
 ---
 
@@ -40,11 +49,42 @@
 
 ## 结果分类（不混着说）
 
-**通过（真跑通）**：`v1.4.0-conformance`（1477/1549）、`canonicalization-v1`（81/81，需 LF 检出）
+**这里有一处更正，先讲清楚**：本 README 的早期版本把 `mustfail-v1` 写成「按设计应当失败」。
+这个说法**不成立**——用上游 `independent_checker.py` 跑 `mustfail-v1`，输出是
+`No case directories with expected.json found`（exit 1），这不是「应有的拒绝」，而是**跑错了执行器**：
+该集是 `case.json` 结构，判定的是 admission 决策，而 `independent_checker.py` 只认 `expected.json` 的向量集。
+把「跑错了」记成「应当失败」，是给自己发一枚假绿。
 
-**按设计应当失败（门禁证明有效）**：`mustfail-v1` —— 该集是 MUST-FAIL 集合，`EXIT=1` 且 `SOME VECTORS FAILED` 是**预期结果**，不是缺陷
+### 更正后的分类
 
-**不可跑（上游未提供执行器或不是向量集结构，非失败）**：`v1.1.20`、`technical-fit-v1`（无 `manifest.json`，后者需走 `verify_pilot.py` 逐例验签，见 05）
+**上游自带执行器，跑通**：`v1.4.0-conformance`（1477/1549）、`canonicalization-v1`（81/81，须 LF 检出）、`technical-fit-v1`（6/6，走自带 `verify_pilot.py`）
+
+**上游未提供执行器，由本包独立实现执行器后跑通**：
+
+| 集 | 执行器 | 结果 |
+|---|---|---|
+| `mustfail-v1` | `07_admission_verifier.py`（零依赖） | 15/15 裁决与期望一致；14/14 最小修复后转 PASS；4/4 松紧度负控 |
+| `v1.3.0` | `08_verify_sig_vectors.py` | 50/50（含 2 条篡改负控） |
+| `v1.1.20` | `08_verify_sig_vectors.py` | 10/10（含 1 条篡改负控） |
+
+**全量口径：6 个向量集，6 个可验，6 个通过；0 不可跑，0 失败。**
+
+> 口径纪律：**不得**表述为「全部向量集用上游执行器通过」——其中 3 集用的是本包自写执行器，这句话必须说明。
+> 可以说的是：「6 集全部通过；其中 3 集上游无执行器，由本包独立实现。」
+
+### 裁决器为什么可信（这两条比「14/14 全拒」有信息量）
+
+1. **最小修复**：对 14 条 MUST-FAIL 逐条只改**唯一**违规定点（补 `tool_call_id`、把 `"9999"` 改成 `9999`、换 nonce、换回授权工具……），改完 **14/14 全部转 PASS**。这说明拦点必要且充分，而不是无脑拒。
+2. **松紧度负控**：`C01` 原样必须 PASS（实测 PASS）；把 `path` 改成 `../../etc/passwd`、把 `caller.issuer` 改成自证颁发者、把 `tool` 改成管理员工具，三种篡改必须 FAIL（实测全 FAIL）。
+
+裁决器的输入白名单只有 `policy` / `tool_call` / `workflow` / `observed_response` / `data_flow` / `response_data_labels`；
+`expectation` / `expectation_detail` / `dimensions_violated` / `why_must_fail` 被 `whitelist()` 排除，脚本内有断言守门。
+
+### 顺带一条对上游的反馈（不是挑刺）
+
+`mustfail-v1/README.md` 称「逐调用打分的裁决器会把三条 workflow 全部误放行」。
+实测：`W01`、`W02` 成立；**`W03` 不成立**——它的注入来源写在 step 2 `tool_call.instruction_provenance` 里，
+一个读该字段的单调用裁决器即可拦截。详见 `13_independent_verdict_and_signature.md` 第四节。
 
 ---
 
@@ -71,10 +111,27 @@ uv run --no-project --with jcs --with cryptography \
 预期末行：`ALL VECTORS PASSED`，且 `Checks: 1477/1549 passed`。
 （`1477/1549` 表示 1549 条断言中 1477 条通过；该向量集的通过判据是 `ALL VECTORS PASSED` 且 exit 0，不是断言全过。）
 
+另外 3 个上游没有执行器的集，用本包自带的执行器跑（同样零凭据）：
+
+```bash
+# mustfail-v1：独立的 admission 裁决器（零依赖，不需要 uv）
+python 07_admission_verifier.py --vectors ../ccs-conformance-vectors/vectors/mustfail-v1
+
+# v1.1.20 + v1.3.0：签名与链接验证
+uv run --no-project --with jcs --with cryptography \
+  python 08_verify_sig_vectors.py --vectors ../ccs-conformance-vectors/vectors
+```
+
+预期：`verdict_match=15/15  dims_match=15/15  minimal_fix_flipped=14/14  controls_ok=4/4`
+与 `checks=60 passed=60 failed=0`。
+
 ---
 
 ## 边界
 
 - 本批次只证明「**在所述 commit 上、按上游 README 的命令、在干净环境中可复现**」，不构成对上游设计或安全性的评价。
+- **其中 3 集（`mustfail-v1` / `v1.3.0` / `v1.1.20`）的执行器是本包自写的，不是上游的。** 这一点必须随结果一起说，不能省。
+- 自写执行器的判据取自工件本身（`policy` 块、`manifest` 声明、`JCS` + `Ed25519`），未参考上游期望值文件作为输入；比对在裁决之后进行，不一致即报，未做调参凑齐。
 - `02` 的 TLS 中断已如实记录于上，未做任何美化。
 - 断言计数（如 `Cases: 66/66`）在 `effff90` 上恰好正确但无区分度 —— 这正是 issue #2 所述 checker 自证行的表现，本批次转录保留了该原始输出。
+- README 早期版本关于 `mustfail-v1`「按设计应当失败」的表述已作废并更正，更正理由写在「结果分类」一节。
