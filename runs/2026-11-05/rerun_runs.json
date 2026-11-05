@@ -1,0 +1,161 @@
+{
+  "note": "重跑证据机读登记。与 facts.json 分开：facts.json 只收外部 HTTP 可核源；本文件只收本地实跑。",
+  "generated_at": "2026-11-05T12:40:00+08:00",
+  "upstream_head_at_run": "cb88218f449c5bc184f0f487a2760eb9953da25a",
+  "runs": [
+    {
+      "id": "R1",
+      "label": "陌生人复现 · 钉住的快照 effff90",
+      "purpose": "证明我方 2026-10-12 记录可被陌生人在 15 分钟内复现",
+      "host": "本机全新空目录 D:\\Workbuddy\\2026-11-05-10-10-55\\stranger_sim",
+      "credentials_used": "none",
+      "commit": "effff90f231d11bb3be93d3d0d0792f36934cc78",
+      "commit_date": "2026-09-30",
+      "commands": [
+        "git -c core.autocrlf=false clone https://github.com/DSHCorrectover/ccs-conformance-vectors.git",
+        "git checkout effff90f231d11bb3be93d3d0d0792f36934cc78",
+        "uv run --no-project --with jcs --with cryptography python checkers/independent_checker.py vectors/v1.4.0-conformance"
+      ],
+      "exit_codes": {"clone": 0, "checkout": 0, "run": 0},
+      "files_checked_out": 621,
+      "key_output": [
+        "Checks: 1477/1549 passed",
+        "Cases:  66/66 matched expected outcome",
+        "ALL VECTORS PASSED"
+      ],
+      "duration_seconds": 20,
+      "started": "2026-11-05T11:41:17+08:00",
+      "finished": "2026-11-05T11:41:37+08:00",
+      "log": "D:\\Workbuddy\\2026-11-05-10-10-55\\stranger_sim\\s51.log",
+      "verdict": "PASS",
+      "significance": "在 effff90 上真打印 Cases: 66/66 —— 该数字恰好正确但无信息量，反向印证 issue #2 所述 self-proof bug 确实存在"
+    },
+    {
+      "id": "R2",
+      "label": "对当前 main 复跑（消解 U1）",
+      "purpose": "验证维护者邀约的「rerun against main」，看 2026-09-30 的结论在今天的 main 上是否仍成立",
+      "host": "同一干净目录",
+      "credentials_used": "none",
+      "commit": "cb88218f449c5bc184f0f487a2760eb9953da25a",
+      "commit_date": "2026-11-05T08:18:56+08:00",
+      "commit_subject": "Add vectors/technical-fit-v1: IICP x CCS pilot fixtures (C1-C6, signed, offline-verifiable)",
+      "commands": [
+        "git fetch origin   (FAILED: schannel SSL/TLS handshake)",
+        "git checkout main",
+        "git pull --ff-only   (FAILED: 同上)",
+        "uv run --no-project --with jcs --with cryptography python checkers/independent_checker.py vectors/v1.4.0-conformance"
+      ],
+      "exit_codes": {"fetch": 128, "pull": 1, "run": 0},
+      "network_note": "fetch/pull 因本机 schannel TLS 握手失败而中断，但 11:41 的 clone 已含 cb88218（main 分支即指向该提交），故复跑对象确为当前 main；若 11:41–11:47 之间上游有新提交，本次未覆盖",
+      "key_output": [
+        "Checks: 1477/1549 passed",
+        "Cases:  66/66 matched expected outcome",
+        "Receipts verified: 73/73 admitted by manifest",
+        "ALL VECTORS PASSED"
+      ],
+      "duration_seconds": 58,
+      "log": "D:\\Workbuddy\\2026-11-05-10-10-55\\stranger_sim\\s51_main.log",
+      "verdict": "PASS",
+      "significance": [
+        "① v1.4.0-conformance 在今日 main 上仍 1477/1549 全过 —— 9-30 的结论未因上游演进失效",
+        "② 多出的 'Receipts verified: 73/73 admitted by manifest' 一行，正是 c848fae 引入的新计数行 —— 修复已在 main 生效的活证据",
+        "③ 此刻的 'Cases: 66/66' 由 matched_cases/expected_cases 真实计数得出，与 effff90 上那句自证式打印性质不同"
+      ]
+    },
+    {
+      "id": "R3",
+      "label": "负控复跑 NC-A / NC-B（证伪能力）",
+      "purpose": "证明这套 checker 不是恒绿——篡改必须被抓住，否则「全过」没有意义",
+      "host": "同一干净目录 ccs-conformance-vectors @ cb88218",
+      "credentials_used": "none",
+      "commit": "cb88218f449c5bc184f0f487a2760eb9953da25a",
+      "commands": [
+        "取脚本：urllib GET raw.githubusercontent.com/zhaoxinghua09-cell/ccs-independent-rerun/main/negative_controls.py -> HTTP 200, 3202 bytes（本机 git 的 remote-https helper 损坏，改走 urllib）",
+        "PYTHONUTF8=1 / PYTHONIOENCODING=utf-8 uv run --no-project --with jcs --with cryptography python negative_controls.py"
+      ],
+      "results": {
+        "NC_A": {
+          "scenario": "篡改 manifest 覆盖的文件，manifest 不动",
+          "exit": 1,
+          "first_line": "MANIFEST VERIFICATION FAILED:",
+          "verdict": "WORKS"
+        },
+        "NC_B": {
+          "scenario": "篡改 receipt 并重钉 manifest 使 manifest gate 通过",
+          "exit": 1,
+          "first_line": "Manifest verified (_ncB/manifest.json)",
+          "last_line": "SOME VECTORS FAILED",
+          "fail_lines": 2,
+          "fail_detail": "FAIL  01-allow / SOME VECTORS FAILED",
+          "verdict": "WORKS"
+        }
+      },
+      "pseudo_green_caught": {
+        "when": "12:00:43 第一次跑（r3_run.log，未设 UTF-8）",
+        "symptom": "NC-B exit=1，但首行是 Traceback、末行 UnicodeEncodeError（gbk 无法编码勾号）、FAIL lines: 0",
+        "misread": "负控脚本的判定式 ok = (rc==1 and 'MANIFEST VERIFICATION FAILED' not in out) 把「checker 崩溃退出 1」误记成「判定 gate 失败退出 1」",
+        "fix": "强制 PYTHONUTF8=1 重跑，才拿到真正的 'Manifest verified' + 'SOME VECTORS FAILED' + 2 条 FAIL 行",
+        "lesson": "exit code 相同 != 语义相同。断言必须同时校验「首行 + 末行 + FAIL 行数」，只判 rc 必然出伪绿"
+      },
+      "logs": [
+        "D:\\Workbuddy\\2026-11-05-10-10-55\\stranger_sim\\r3_run.log（伪绿记录，故意留档）",
+        "D:\\Workbuddy\\2026-11-05-10-10-55\\stranger_sim\\r3_run2.log（真绿）"
+      ],
+      "verdict": "PASS"
+    },
+    {
+      "id": "R4",
+      "label": "全量 6 集扫（LF 干净检出）",
+      "purpose": "把「全面全量实跑」做实：不抽样、逐集用其自带正确跑法，并区分「不可跑」与「失败」",
+      "host": "全新干净目录 D:\\Workbuddy\\2026-11-05-10-10-55\\stranger_sim2（git -c core.autocrlf=false -c core.eol=lf clone --depth 1）",
+      "credentials_used": "none",
+      "commit": "cb88218f449c5bc184f0f487a2760eb9953da25a",
+      "results": {
+        "v1.4.0-conformance": {"runner": "independent_checker.py", "output": "Checks 1477/1549 · Cases 66/66 · Receipts 73/73 · ALL VECTORS PASSED", "exit": 0, "verdict": "PASS"},
+        "canonicalization-v1": {"runner": "independent_checker.py", "output": "Checks 81/81 · Cases 2/2 · ALL VECTORS PASSED", "exit": 0, "verdict": "PASS"},
+        "technical-fit-v1": {"runner": "verify_pilot.py × 6 fixtures", "output": "C1–C4 VALID / C5 INVALID (tamper detected) / C6 VALID", "exit": [0, 0, 0, 0, 1, 0], "verdict": "PASS 6/6"},
+        "v1.3.0": {"runner": "independent_checker.py", "output": "Manifest verified，但 No case directories with expected.json found", "exit": 1, "verdict": "NOT_RUNNABLE"},
+        "mustfail-v1": {"runner": "independent_checker.py", "output": "Manifest verified，但 No case directories with expected.json found；上游无 admission 决策器", "exit": 1, "verdict": "NOT_RUNNABLE"},
+        "v1.1.20": {"runner": "none", "output": "目录内仅 reference-signed-001.json，无 manifest、无 case", "verdict": "NOT_RUNNABLE"}
+      },
+      "summary": "可跑 3/3 全过；全量 6 集 = 3 PASS / 3 NOT_RUNNABLE / 0 FAIL",
+      "false_fail_caught": {
+        "symptom": "旧目录跑 canonicalization-v1 报 8 个文件 hash mismatch，初判疑似上游损坏",
+        "root_cause": "旧目录 core.autocrlf=true，文本被转 CRLF，SHA-256 全变",
+        "fix": "autocrlf=false 干净重检后同集 81/81 全过",
+        "lesson": "与 R3 的伪绿同型：凡「失败」先排除自己的环境，再认定对方",
+        "upstream_defect_found": "上游仓无 .gitattributes（实测 exists=False），Windows 用户按默认配置克隆必得假 FAIL，可反馈维护者"
+      },
+      "log": "D:\\Workbuddy\\2026-11-05-10-10-55\\clean_run.log",
+      "verdict": "PASS"
+    }
+  ],
+  "coverage_matrix": [
+    {"vector_set": "vectors/v1.4.0-conformance", "at_effff90": "PASS 1477/1549", "at_main": "PASS 1477/1549", "covered": true},
+    {"vector_set": "vectors/canonicalization-v1", "at_effff90": "不存在", "at_main": "PASS 81/81（LF 检出）", "covered": true},
+    {"vector_set": "vectors/technical-fit-v1", "at_effff90": "不存在", "at_main": "PASS 6/6（verify_pilot.py）", "covered": true},
+    {"vector_set": "vectors/v1.3.0", "at_effff90": "存在", "at_main": "NOT_RUNNABLE（非 expected.json case 结构）", "covered": false, "why": "manifest 可验，但该集不是 case 集，checker 无对应用法"},
+    {"vector_set": "vectors/mustfail-v1", "at_effff90": "存在", "at_main": "NOT_RUNNABLE（无 admission 裁决器）", "covered": false, "why": "检验 admission 决策，上游只提供 receipt 结构与签名检查器；rerun 仓 run_mustfail-v1.txt 有输出无执行器，不可复现"},
+    {"vector_set": "vectors/v1.1.20", "at_effff90": "存在", "at_main": "NOT_RUNNABLE（仅 1 个参考签名样本）", "covered": false, "why": "无 manifest、无 case 目录，非测试集"}
+  ],
+  "negative_controls": {
+    "status": "PASS_TODAY",
+    "detail": "NC-A / NC-B 于 2026-11-05 12:01 在 cb88218 上复跑通过（见 R3）：篡改必被抓住，门禁具证伪能力。首跑曾出伪绿（崩溃被误判为判定失败），已修正并留档。",
+    "gap": false
+  },
+  "assertion_level_coverage": {
+    "claimed_in_email": ["v1.4.0-conformance @ effff90"],
+    "covered": "1/1 = 100%",
+    "note": "邮件只声称跑过 v1.4.0-conformance 并钉死 commit，该集已双向验证（effff90 + main）。不得表述为「全部向量集通过」（3 集不可跑），也不得表述为「3 集失败」。"
+  },
+  "publication_status": {
+    "today_transcripts_public": false,
+    "detail": "R1–R4 的转录与四张可视化目前只在本机，未推回公开仓 zhaoxinghua09-cell/ccs-independent-rerun；公开仓内的转录仍是 2026-10-12 的版本",
+    "gap": true
+  },
+  "ownership_bundle": {
+    "status": "INCOMPLETE",
+    "detail": "被引仓 ccs-independent-rerun 根目录实测无 ATTESTATION.md、无 manifest.json（权属五件套缺）",
+    "gap": true
+  }
+}
